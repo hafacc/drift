@@ -417,7 +417,7 @@ private fun NoReading(ui: UiState, actions: ControlActions) {
                     else -> CircularProgressIndicator(color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
             }
-            DeviceOptions(ui.beepEnabled, accentColors(powerOn = false, mode = OperationalMode.AUTO), actions)
+            DeviceOptions(ui.beepEnabled, actions)
         }
     }
 }
@@ -457,17 +457,21 @@ private fun ControlContent(ui: UiState, state: ACState, actions: ControlActions,
         ExtrasGrid(state, accent, fanOnly, actions)
 
         if (state.filterAlert) FilterCard()
-        DeviceOptions(ui.beepEnabled, accent, actions)
+        DeviceOptions(ui.beepEnabled, actions)
     }
 }
 
 /** Whether the AC beeps at each command, forgetting the device, and the privacy policy. */
 @Composable
-private fun DeviceOptions(beepEnabled: Boolean, accent: AccentColors, actions: ControlActions) {
+private fun DeviceOptions(beepEnabled: Boolean, actions: ControlActions) {
     var confirmingForget by rememberSaveable { mutableStateOf(false) }
     Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         ToggleTile(
-            Icons.AutoMirrored.Outlined.VolumeUp, "Beep", beepEnabled, accent, modifier = Modifier.fillMaxWidth(),
+            Icons.AutoMirrored.Outlined.VolumeUp,
+            "Beep",
+            beepEnabled,
+            themeAccentColors(),
+            modifier = Modifier.fillMaxWidth(),
             onChange = actions.onBeep,
         )
         TextButton(
