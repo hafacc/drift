@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "name": "drift-site",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "imports": {
+    "#lib/*": "./src/lib/*"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "export": "vite build",
+    "preview": "vite preview",
+    "fmt": "biome check --write",
+    "lint": "svelte-kit sync && svelte-check --fail-on-warnings && biome check"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@sveltejs/adapter-static": "^4.0.0",
+    "@sveltejs/kit": "^3.0.1",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "svelte": "^5.57.2",
+    "svelte-check": "^4.7.6",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.3"
+  }
+}

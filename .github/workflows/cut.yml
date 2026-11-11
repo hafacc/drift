@@ -1,6 +1,7 @@
-# Cut a release of every chosen app in one go, each with the same bump. Each app is its own
-# cut-app.yml, one after another on the `cut` lock, so their tags land minutes apart: of two
-# tags pushed in the same second, Xcode Cloud can build only the last.
+# Cut a release of every chosen app in one go, each with the same bump, and publish main's
+# site. Each app is its own cut-app.yml, one after another on the `cut` lock, so their tags
+# land minutes apart: of two tags pushed in the same second, Xcode Cloud can build only the
+# last. The site checks itself.
 name: cut
 
 on:
@@ -21,6 +22,10 @@ on:
         default: true
       ios:
         description: iOS app
+        type: boolean
+        default: true
+      web:
+        description: deploy the site
         type: boolean
         default: true
 
@@ -77,3 +82,11 @@ jobs:
       actions: write # start the publish
       pull-requests: read # build.yml asks for it; unused here
       checks: read # see that Xcode Cloud started
+
+  web:
+    if: inputs.web
+    uses: ./.github/workflows/web-deploy.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
