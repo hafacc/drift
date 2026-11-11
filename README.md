@@ -1,5 +1,7 @@
 # Drift — local control for Midea air conditioners
 
+[drift.hafa.cc](https://drift.hafa.cc)
+
 Privacy-respecting, fully-local control of a Midea WiFi air conditioner — a
 better alternative to the flaky stock "smart home" app. Talks to the AC's WiFi
 module directly over the LAN; the Midea cloud is contacted exactly once (to fetch
@@ -16,6 +18,7 @@ reverse-engineered, so we can control the unit ourselves.
 ```
 apple/    SwiftUI apps for macOS and iPhone, with widgets and a Control Center control; uses the published MideaKit Swift package.
 android/  Jetpack Compose app + Quick Settings tile + home widget; uses the published mideakt library.
+site/     drift.hafa.cc: the apps' page and privacy policy (SvelteKit, static, on GitHub Pages).
 ```
 
 Each app discovers the device and fetches its key **itself** during first-run
@@ -52,3 +55,4 @@ set of test vectors so the two apps behave identically.
   SwiftPM.
 - **Android:** `cd android && ./gradlew installDebug`. `mideakt` resolves
   remotely via JitPack.
+- **Site:** `cd site && bun install && bun dev`.

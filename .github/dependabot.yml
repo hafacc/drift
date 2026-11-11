@@ -5,6 +5,11 @@ updates:
     schedule:
       interval: monthly
 
+  - package-ecosystem: bun
+    directory: /site
+    schedule:
+      interval: monthly
+
   - package-ecosystem: gradle
     directory: /android
     schedule:
