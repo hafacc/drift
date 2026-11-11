@@ -1,0 +1,35 @@
+# Cut a release of every chosen app in one go, each with the same bump. Each app is its own
+# cut-app.yml, one after another on the `cut` lock.
+name: cut
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: semver bump
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+      android:
+        description: Android app
+        type: boolean
+        default: true
+
+permissions: {}
+
+jobs:
+  android:
+    if: inputs.android
+    uses: ./.github/workflows/cut-app.yml
+    with:
+      app: android
+      bump: ${{ inputs.bump }}
+    # one cut at a time across every cut workflow, held from before the tests until the push
+    concurrency:
+      group: cut
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write # push the bump + tag
+      actions: write # start the publish
+      pull-requests: read # build.yml asks for it; unused here

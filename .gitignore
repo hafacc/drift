@@ -1,0 +1,18 @@
+# Device credential cache (id/token/key) — fetched from the cloud, never committed
+cache/
+secrets.json
+*.secret.json
+.env
+
+# Android / Gradle
+android/**/build/
+android/.gradle/
+android/.kotlin/
+android/.idea/
+local.properties
+# (gradle-wrapper.jar is intentionally committed)
+
+# Signing keys
+*.jks
+*.keystore
+keystore.properties

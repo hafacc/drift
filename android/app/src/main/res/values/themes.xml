@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose drives the look; the activity theme just needs no action bar. -->
+    <style name="Theme.Drift" parent="@android:style/Theme.Material.Light.NoActionBar" />
+
+    <!-- For QuickControlsActivity: a translucent, background-less window so Compose's own
+         dim scrim + centered card reads as a modal over whatever was behind it, rather than
+         a full-screen activity. -->
+    <style name="Theme.Drift.QuickControls" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+</resources>

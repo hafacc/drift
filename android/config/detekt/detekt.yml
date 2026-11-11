@@ -1,0 +1,37 @@
+# Deviations from detekt's default rule set (buildUponDefaultConfig = true).
+# Philosophy: everything on by default; globally disable (or scope) only rules this
+# codebase violates pervasively and intentionally, and use inline @Suppress for one-offs.
+# This is an app, not a library, so there is no public-API doc gate.
+build:
+  maxIssues: 0
+
+naming:
+  # Files are named by concept/surface (Screens, Display, Theme, ...), not always
+  # after a single top-level declaration.
+  MatchingDeclarationName:
+    active: false
+  # @Composable functions are PascalCase by Compose convention; the rule stays on for
+  # every ordinary function.
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+
+complexity:
+  # The connection owner (DeviceManager) and the view model are deliberately decomposed
+  # into many small, single-purpose helpers, and Compose screen files hold one function
+  # per UI piece — a per-declaration function count penalizes that intended structure.
+  TooManyFunctions:
+    active: false
+
+style:
+  # DeviceManager's reach path is a ladder of guarded steps, each returning on success
+  # before falling through to the next fallback; a 2-return ceiling fights that shape.
+  ReturnCount:
+    active: false
+  # Compose/Glance UI and the tile protocol are built from dp/sp/color literals
+  # throughout; flagging each as a "magic number" would bury real findings.
+  MagicNumber:
+    active: false
+  # @Preview composables are invoked by tooling/the IDE, not from code, so detekt sees
+  # them as unused; the rule stays on for genuinely dead private members.
+  UnusedPrivateMember:
+    ignoreAnnotated: ['Preview']

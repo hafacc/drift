@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 11 and earlier: keep the AC's key and the setup record out of backups. -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="drift_secure.xml" />
+    <exclude domain="file" path="setup.log" />
+</full-backup-content>
