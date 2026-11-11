@@ -1,11 +1,18 @@
 # Xcode project spec (generated with: xcodegen generate).
 #
-# The macOS app (Drift) embeds the DriftWidget extension, and the iOS app (DriftiOS)
-# embeds DriftWidgetiOS. All four depend on the MideaKit Swift package
-# (github.com/hafacc/MideaKit) and share the set-up device through a Keychain access
-# group (cc.hafa.Drift.shared). The two apps share one bundle ID for a universal
-# purchase. The team is baked in below; if you need to change it, edit
-# DEVELOPMENT_TEAM or set it in Xcode.
+# Drift is one app target that builds for both macOS and iOS, and embeds the
+# DriftWidget extension, which also builds for both. App/ and Widget/ are compiled only
+# for macOS, iOSApp/ and iOSWidget/ only for iOS. Everything depends on the MideaKit
+# Swift package (github.com/hafacc/MideaKit) and shares the set-up device through a
+# Keychain access group (cc.hafa.Drift.shared). The team is baked in below; if you need
+# to change it, edit DEVELOPMENT_TEAM or set it in Xcode.
+#
+# Each platform has its own Info.plist and entitlements file, picked by SDK in the
+# settings below; edit those files directly. The App Group differs between platforms:
+# macOS takes the Team-ID-prefixed form (an iOS-style group.* needs a provisioning
+# profile and fails under local signing), iOS takes only the group.* form. Both hold the
+# snapshot. com.apple.developer.networking.multicast goes in the iOS entitlements once
+# Apple grants it.
 
 name: Drift
 
@@ -37,9 +44,19 @@ packages:
 targets:
   Drift:
     type: application
-    platform: macOS
+    platform: auto
+    supportedDestinations: [iOS, macOS]
     sources:
       - path: App
+        destinationFilters: [macOS]
+      - path: iOSApp
+        destinationFilters: [iOS]
+        excludes:
+          - Info.plist
+      # Listed apart so it isn't copied in as a resource; xcodegen only skips the plist
+      # it finds in an unconditional INFOPLIST_FILE.
+      - path: iOSApp/Info.plist
+        buildPhase: none
       - path: AppCore
       - path: Shared
     dependencies:
@@ -52,126 +69,30 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: cc.hafa.Drift
         PRODUCT_NAME: Drift
         GENERATE_INFOPLIST_FILE: NO
-        ENABLE_HARDENED_RUNTIME: YES
+        INFOPLIST_FILE[sdk=macosx*]: App/Info.plist
+        INFOPLIST_FILE[sdk=iphone*]: iOSApp/Info.plist
+        CODE_SIGN_ENTITLEMENTS[sdk=macosx*]: App/Drift.entitlements
+        CODE_SIGN_ENTITLEMENTS[sdk=iphone*]: iOSApp/Drift.entitlements
+        ENABLE_HARDENED_RUNTIME[sdk=macosx*]: YES
+        COMBINE_HIDPI_IMAGES[sdk=macosx*]: YES
+        CODE_SIGN_IDENTITY[sdk=macosx*]: Apple Development
+        LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]: ["@executable_path/../Frameworks"]
+        TARGETED_DEVICE_FAMILY: "1"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-    info:
-      path: App/Info.plist
-      properties:
-        CFBundleShortVersionString: "$(MARKETING_VERSION)"
-        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
-        LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
-        NSPrincipalClass: NSApplication
-        LSApplicationCategoryType: public.app-category.utilities
-        NSLocalNetworkUsageDescription: "Drift controls your air conditioner directly over your local network."
-        # Register the drift:// scheme so the widget's tap deep-link actually routes
-        # to the app (onOpenURL); without this the URL resolves to nothing and the tap
-        # does nothing when the app isn't already frontmost.
-        CFBundleURLTypes:
-          - CFBundleURLName: cc.hafa.Drift
-            CFBundleURLSchemes:
-              - drift
-    entitlements:
-      path: App/Drift.entitlements
-      properties:
-        com.apple.security.app-sandbox: true
-        com.apple.security.network.client: true
-        com.apple.security.network.server: true  # receive UDP discovery replies
-        keychain-access-groups:
-          - $(AppIdentifierPrefix)cc.hafa.Drift.shared
-        com.apple.security.application-groups:
-          # macOS App Group must be Team-ID-prefixed (iOS-style group.* needs a
-          # provisioning profile and fails under local signing). Holds the snapshot.
-          - $(AppIdentifierPrefix)cc.hafa.Drift
 
   DriftWidget:
     type: app-extension
-    platform: macOS
+    platform: auto
+    supportedDestinations: [iOS, macOS]
     sources:
       - path: Widget
-      - path: WidgetCore
-      - path: Shared
-    dependencies:
-      - package: MideaKit
-        product: MideaKit
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: cc.hafa.Drift.Widget
-        PRODUCT_NAME: DriftWidget
-        GENERATE_INFOPLIST_FILE: NO
-        ENABLE_HARDENED_RUNTIME: YES
-    info:
-      path: Widget/Info.plist
-      properties:
-        CFBundlePackageType: XPC!
-        CFBundleShortVersionString: "$(MARKETING_VERSION)"
-        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
-        NSExtension:
-          NSExtensionPointIdentifier: com.apple.widgetkit-extension
-    entitlements:
-      path: Widget/DriftWidget.entitlements
-      properties:
-        com.apple.security.app-sandbox: true
-        com.apple.security.network.client: true
-        com.apple.security.network.server: true  # receive UDP discovery replies
-        keychain-access-groups:
-          - $(AppIdentifierPrefix)cc.hafa.Drift.shared
-        com.apple.security.application-groups:
-          - $(AppIdentifierPrefix)cc.hafa.Drift
-
-  DriftiOS:
-    type: application
-    platform: iOS
-    sources:
-      - path: iOSApp
-      - path: AppCore
-      - path: Shared
-    dependencies:
-      - package: MideaKit
-        product: MideaKit
-      - target: DriftWidgetiOS
-        embed: true
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: cc.hafa.Drift
-        PRODUCT_NAME: Drift
-        GENERATE_INFOPLIST_FILE: NO
-        TARGETED_DEVICE_FAMILY: "1"
-        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-    info:
-      path: iOSApp/Info.plist
-      properties:
-        CFBundleDisplayName: Drift
-        CFBundleShortVersionString: "$(MARKETING_VERSION)"
-        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
-        LSRequiresIPhoneOS: true
-        LSApplicationCategoryType: public.app-category.utilities
-        UILaunchScreen: {}
-        UIApplicationSceneManifest:
-          UIApplicationSupportsMultipleScenes: false
-        UISupportedInterfaceOrientations:
-          - UIInterfaceOrientationPortrait
-        NSLocalNetworkUsageDescription: "Drift controls your air conditioner directly over your local network."
-        # The widgets open drift://open when tapped.
-        CFBundleURLTypes:
-          - CFBundleURLName: cc.hafa.Drift
-            CFBundleURLSchemes:
-              - drift
-    # com.apple.developer.networking.multicast goes here once Apple grants it; until
-    # then the broadcast probe fails and the subnet probes find the AC.
-    entitlements:
-      path: iOSApp/Drift.entitlements
-      properties:
-        keychain-access-groups:
-          - $(AppIdentifierPrefix)cc.hafa.Drift.shared
-        com.apple.security.application-groups:
-          # iOS App Groups take only the group.* form. Holds the snapshot.
-          - group.cc.hafa.Drift
-
-  DriftWidgetiOS:
-    type: app-extension
-    platform: iOS
-    sources:
+        destinationFilters: [macOS]
       - path: iOSWidget
+        destinationFilters: [iOS]
+        excludes:
+          - Info.plist
+      - path: iOSWidget/Info.plist
+        buildPhase: none
       - path: WidgetCore
       - path: Shared
     dependencies:
@@ -182,30 +103,23 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: cc.hafa.Drift.Widget
         PRODUCT_NAME: DriftWidget
         GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE[sdk=macosx*]: Widget/Info.plist
+        INFOPLIST_FILE[sdk=iphone*]: iOSWidget/Info.plist
+        CODE_SIGN_ENTITLEMENTS[sdk=macosx*]: Widget/DriftWidget.entitlements
+        CODE_SIGN_ENTITLEMENTS[sdk=iphone*]: iOSWidget/DriftWidget.entitlements
+        ENABLE_HARDENED_RUNTIME[sdk=macosx*]: YES
+        COMBINE_HIDPI_IMAGES[sdk=macosx*]: YES
+        CODE_SIGN_IDENTITY[sdk=macosx*]: Apple Development
+        LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]:
+          ["@executable_path/../Frameworks", "@executable_path/../../../../Frameworks"]
         TARGETED_DEVICE_FAMILY: "1"
-    info:
-      path: iOSWidget/Info.plist
-      properties:
-        CFBundleDisplayName: Drift
-        CFBundlePackageType: XPC!
-        CFBundleShortVersionString: "$(MARKETING_VERSION)"
-        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
-        NSLocalNetworkUsageDescription: "Drift controls your air conditioner directly over your local network."
-        NSExtension:
-          NSExtensionPointIdentifier: com.apple.widgetkit-extension
-    entitlements:
-      path: iOSWidget/DriftWidget.entitlements
-      properties:
-        keychain-access-groups:
-          - $(AppIdentifierPrefix)cc.hafa.Drift.shared
-        com.apple.security.application-groups:
-          - group.cc.hafa.Drift
 
   # Unit tests for first-run setup. Not hosted in the app, so they never launch it or
   # see the installed app's Keychain device; they compile the setup sources directly.
   DriftTests:
     type: bundle.unit-test
-    platform: macOS
+    platform: auto
+    supportedDestinations: [iOS, macOS]
     sources:
       - path: Tests
       - path: AppCore
@@ -219,24 +133,10 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: cc.hafa.DriftTests
         GENERATE_INFOPLIST_FILE: YES
-
-  # The same tests, run on an iOS simulator.
-  DriftiOSTests:
-    type: bundle.unit-test
-    platform: iOS
-    sources:
-      - path: Tests
-      - path: AppCore
-      - path: Shared
-        excludes:
-          - PrivacyInfo.xcprivacy
-    dependencies:
-      - package: MideaKit
-        product: MideaKit
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: cc.hafa.DriftiOSTests
-        GENERATE_INFOPLIST_FILE: YES
+        COMBINE_HIDPI_IMAGES[sdk=macosx*]: YES
+        CODE_SIGN_IDENTITY[sdk=macosx*]: Apple Development
+        LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]: ["@executable_path/../Frameworks", "@loader_path/../Frameworks"]
+        TARGETED_DEVICE_FAMILY: "1,2"
 
 schemes:
   Drift:
@@ -251,27 +151,3 @@ schemes:
         - DriftTests
     archive:
       config: Release
-  DriftWidget:
-    build:
-      targets:
-        DriftWidget: all
-    run:
-      config: Debug
-  DriftiOS:
-    build:
-      targets:
-        DriftiOS: all
-    run:
-      config: Debug
-    test:
-      config: Debug
-      targets:
-        - DriftiOSTests
-    archive:
-      config: Release
-  DriftWidgetiOS:
-    build:
-      targets:
-        DriftWidgetiOS: all
-    run:
-      config: Debug

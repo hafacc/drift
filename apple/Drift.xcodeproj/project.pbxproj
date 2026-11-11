@@ -8,106 +8,61 @@
 
 /* Begin PBXBuildFile section */
 		01418EB2093844B00A0D9EBA /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82059D6F994514C5F823D460 /* Snapshot.swift */; };
-		026FABA88E7EFD621C463C79 /* MideaKit in Frameworks */ = {isa = PBXBuildFile; productRef = CB79B697968BD471A55A1E60 /* MideaKit */; };
 		02AEE58810EC2AEECF4E18D6 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726B0047C3F72608C3A0D9BE /* DeviceService.swift */; };
-		084CF313F43244E2564304A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22ED8F4F11C6CDA18D3FC67 /* ContentView.swift */; };
-		0C7FF9FB4729906F54DA6B61 /* BackgroundRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B5F8C3A65338F317987D /* BackgroundRelease.swift */; };
-		0EDD80C8A15F16A562D63A13 /* SingleFlightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F0576BF23CBAFB27A1764 /* SingleFlightTests.swift */; };
+		084CF313F43244E2564304A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22ED8F4F11C6CDA18D3FC67 /* ContentView.swift */; platformFilters = (macos, ); };
 		0F3E5C78205667A2B6CCCD5F /* FilterReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96771DF78E95D86B3AAC69B9 /* FilterReset.swift */; };
-		102A4382A1D98841F3053945 /* FilterReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96771DF78E95D86B3AAC69B9 /* FilterReset.swift */; };
+		127C57FE55233319ABA90733 /* PrivacySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCEDB11603F0465F8F12A9D /* PrivacySheet.swift */; platformFilters = (ios, ); };
 		151289622E1C9BEA2B277606 /* SingleFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D78538EB340A5115879AEB8 /* SingleFlight.swift */; };
-		164D3BF42B45C0E5BF7DFDB1 /* StoredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EFE5B2C6380EC89E1E952 /* StoredDevice.swift */; };
-		1DC30AA49FBE456A91B72669 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D8D8F755481CFDBFA0791 /* Keychain.swift */; };
 		210F12780D0FC2099574F697 /* FilterReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96771DF78E95D86B3AAC69B9 /* FilterReset.swift */; };
-		2162EF46F1D53508B080D14F /* MideaKit in Frameworks */ = {isa = PBXBuildFile; productRef = EBB2F865A2465BEEA7E0B097 /* MideaKit */; };
-		24F6A552665FC46BCFA2E6EA /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140184EA9160B065E662C929 /* SetupFlow.swift */; };
 		259E9CE3A8D50AC653CEEA36 /* MideaKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4F8C68008090F2B16BE9CCE2 /* MideaKit */; };
-		2A13016278411FA1C34E444C /* DriftWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7141E70FF712CF8DB87B8A07 /* DriftWidget.swift */; };
-		2BE4ED1970F9FAAFDBFE62CE /* DeviceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF31FF13AA4C03D9121B07E5 /* DeviceSearch.swift */; };
-		2DCEFFDC40881EEA50E4A09F /* SingleFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D78538EB340A5115879AEB8 /* SingleFlight.swift */; };
+		2A13016278411FA1C34E444C /* DriftWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7141E70FF712CF8DB87B8A07 /* DriftWidget.swift */; platformFilters = (macos, ); };
 		32AF962B0DC1BF30DBF76E93 /* SingleFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D78538EB340A5115879AEB8 /* SingleFlight.swift */; };
 		33905B5B795F3D994E3B8FBF /* StoredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EFE5B2C6380EC89E1E952 /* StoredDevice.swift */; };
-		362A795537F9BDD8C7CF27C1 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82059D6F994514C5F823D460 /* Snapshot.swift */; };
-		3C9D4AE83DE0439F5D725D34 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D8D8F755481CFDBFA0791 /* Keychain.swift */; };
+		3DB55231AEFFEAF061081984 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB7A7A5F78F17CBBD1CE2A21 /* Assets.xcassets */; platformFilters = (ios, ); };
 		3E4ADCE1D94B7416733806BD /* DeviceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF31FF13AA4C03D9121B07E5 /* DeviceSearch.swift */; };
-		40932BBA764F32EA59960FFF /* MideaKit in Frameworks */ = {isa = PBXBuildFile; productRef = 92C5CEF34C237610743E7C3B /* MideaKit */; };
-		42F7F2D8236B645A12357F65 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42DD325D5A314F6B410019 /* DeviceStore.swift */; };
-		4577F16CFACAC99D07BA3FE4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0BB43A59867C58357EF6E650 /* PrivacyInfo.xcprivacy */; };
 		473EAB38E58E8185330AF2EA /* StoredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EFE5B2C6380EC89E1E952 /* StoredDevice.swift */; };
-		486D15BDB94DC2ED24BBBD09 /* StoredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EFE5B2C6380EC89E1E952 /* StoredDevice.swift */; };
 		4AD13126C083278204962F0A /* SingleFlightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16F0576BF23CBAFB27A1764 /* SingleFlightTests.swift */; };
 		51B42B148AE625FB948A62BA /* FilterReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96771DF78E95D86B3AAC69B9 /* FilterReset.swift */; };
-		52110B7A88A31D4FEA3C7B46 /* FilterReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96771DF78E95D86B3AAC69B9 /* FilterReset.swift */; };
-		5347BE63E22BF1CB28C2687D /* SetupNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A93CF943A2894E65CC6A1F6 /* SetupNetwork.swift */; };
 		589D5E20A863CF25D021A56A /* SetupNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A93CF943A2894E65CC6A1F6 /* SetupNetwork.swift */; };
-		59306CDD23B5910D90728400 /* SetupRetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4A822516F506CCCB31ACB5 /* SetupRetryTests.swift */; };
-		5AA5D79D4E06211F69A6173B /* SingleFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D78538EB340A5115879AEB8 /* SingleFlight.swift */; };
 		5AD226833AD988B7DD7D1C5A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0BB43A59867C58357EF6E650 /* PrivacyInfo.xcprivacy */; };
 		5D525330F388FCE56B88DF6F /* WidgetReload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1DAA0A4C6A23A372D9991 /* WidgetReload.swift */; };
-		5DDBE0E2D76C6ACAD0A0CADB /* DeviceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF31FF13AA4C03D9121B07E5 /* DeviceSearch.swift */; };
-		6070E24AAE2E6A0940962148 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0BB43A59867C58357EF6E650 /* PrivacyInfo.xcprivacy */; };
-		6265B809118175906C116D07 /* SetupNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A93CF943A2894E65CC6A1F6 /* SetupNetwork.swift */; };
+		5D627D045040247031BC54C6 /* BackgroundRelease.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222B5F8C3A65338F317987D /* BackgroundRelease.swift */; platformFilters = (ios, ); };
 		656743D530E8FF065F974528 /* WidgetReload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1DAA0A4C6A23A372D9991 /* WidgetReload.swift */; };
 		6AF1B62A17EE5DED32B3C715 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0BB43A59867C58357EF6E650 /* PrivacyInfo.xcprivacy */; };
-		6B7117B28CF26E411CAC0815 /* HomeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19A3FCE510233987A0FB485 /* HomeWidget.swift */; };
-		6BF0184946F63E674741EFDB /* StoredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EFE5B2C6380EC89E1E952 /* StoredDevice.swift */; };
-		7003055951C64834C96A0F10 /* TemperatureDial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B60D0427F47ACCC56992C1 /* TemperatureDial.swift */; };
 		7033275516E1A6C801FB7EA2 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82059D6F994514C5F823D460 /* Snapshot.swift */; };
-		708979A47405C17BA4216BEE /* DeviceSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622C5D512658641BA0B5F6C7 /* DeviceSearchTests.swift */; };
-		70D5A6FD642D9163C8DFAA3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB7A7A5F78F17CBBD1CE2A21 /* Assets.xcassets */; };
-		70FDD63B79948AE2FB2A3911 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEFB89E2AD0F0E64AC541AA /* ControlView.swift */; };
 		71E9A9A730042245004D475F /* MideaKit in Frameworks */ = {isa = PBXBuildFile; productRef = FC5D95AEA39FCA5B7D897776 /* MideaKit */; };
-		7367FAF48C0853E0DC94F67F /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA1EF84824DFDE34CBDD87 /* PrivacyPolicy.swift */; };
-		7887330709917C7F9FE1B80F /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42DD325D5A314F6B410019 /* DeviceStore.swift */; };
 		794CD0F15E3400E6F16BF389 /* StoredDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EFE5B2C6380EC89E1E952 /* StoredDevice.swift */; };
-		79FDFDCDFBAE8FABE25C966F /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82059D6F994514C5F823D460 /* Snapshot.swift */; };
-		7A4828B0F63CD16C8B806592 /* WidgetReload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1DAA0A4C6A23A372D9991 /* WidgetReload.swift */; };
+		81E9A0C7A00E9B8511FBA5E0 /* PowerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7218DE3B83A5B92EB4A7E574 /* PowerControl.swift */; platformFilters = (ios, ); };
 		83ADE5BBBC39D779E2699D73 /* WidgetReload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1DAA0A4C6A23A372D9991 /* WidgetReload.swift */; };
 		850A53D4127B09378E34434F /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F7DE820282B244B070704 /* Display.swift */; };
 		88C650294DAC2DC7F0913DA7 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F7DE820282B244B070704 /* Display.swift */; };
-		8C2EA42313DDB2B4A103C7BB /* SingleFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D78538EB340A5115879AEB8 /* SingleFlight.swift */; };
-		8D425AC8260E5BD8AF20CCE7 /* WidgetReload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1DAA0A4C6A23A372D9991 /* WidgetReload.swift */; };
-		9065AE8FA9C06AD0A530E7C5 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C435AE643750CE8D050722 /* SetupView.swift */; };
+		89DAB16E0332F0D709DCA237 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94C435AE643750CE8D050722 /* SetupView.swift */; platformFilters = (ios, ); };
 		9108B8F9A0036E788ECB3BA2 /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42DD325D5A314F6B410019 /* DeviceStore.swift */; };
 		927206535026AB0FEF8AEBFD /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726B0047C3F72608C3A0D9BE /* DeviceService.swift */; };
-		956BFC38F09CBB919D68B5BA /* WidgetActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E1175BC114FFF71DC0E7C /* WidgetActions.swift */; };
+		9729BAC8516F6283B1D507EF /* DriftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43254D57E4BD27A14185079F /* DriftApp.swift */; platformFilters = (ios, ); };
 		995E6FE4603B767B258A01ED /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D8D8F755481CFDBFA0791 /* Keychain.swift */; };
-		9B982FA8B4C5B075B43B53C4 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F7DE820282B244B070704 /* Display.swift */; };
-		9BCF25FE62F4AD67BB3B281A /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D8D8F755481CFDBFA0791 /* Keychain.swift */; };
-		9C89D007F4579435CA057390 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F7DE820282B244B070704 /* Display.swift */; };
 		9E866B5BE574B9B5C76FCB37 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F7DE820282B244B070704 /* Display.swift */; };
-		A08E2652047BCCB01EEA68AC /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726B0047C3F72608C3A0D9BE /* DeviceService.swift */; };
 		A349C57E1A1A347C924B9FA1 /* DriftWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 0F759FA8F6D800CE5BAD454A /* DriftWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A4AD197209BB26B07C72F989 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D8D8F755481CFDBFA0791 /* Keychain.swift */; };
+		A556AC427714B1027AF0DB39 /* TemperatureDial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B60D0427F47ACCC56992C1 /* TemperatureDial.swift */; platformFilters = (ios, ); };
 		A799070DD0F305A990440F13 /* DeviceSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 622C5D512658641BA0B5F6C7 /* DeviceSearchTests.swift */; };
 		A80B78330BA04AC026FB2F01 /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA1EF84824DFDE34CBDD87 /* PrivacyPolicy.swift */; };
-		AB18A40EC3B2B9F65B584E45 /* DriftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEA6424F652B644F6E603B /* DriftApp.swift */; };
+		AB18A40EC3B2B9F65B584E45 /* DriftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CEA6424F652B644F6E603B /* DriftApp.swift */; platformFilters = (macos, ); };
 		AF34D0FECA3D2855F9B07B1B /* DeviceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E42DD325D5A314F6B410019 /* DeviceStore.swift */; };
-		B37E4159028714B8591268E0 /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140184EA9160B065E662C929 /* SetupFlow.swift */; };
 		B3D9E6A42BC011B500B46BCB /* SetupRetryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4A822516F506CCCB31ACB5 /* SetupRetryTests.swift */; };
 		B5423154EFF0125E4FC512E2 /* SetupNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A93CF943A2894E65CC6A1F6 /* SetupNetwork.swift */; };
 		B5F450F0DA1DECD271552F3F /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140184EA9160B065E662C929 /* SetupFlow.swift */; };
-		B6287EB06EFF4B0558105374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73185B3EF9DCC449C0F66E38 /* Assets.xcassets */; };
-		B948E7E3F1B8F9B8E2F27942 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726B0047C3F72608C3A0D9BE /* DeviceService.swift */; };
+		B6287EB06EFF4B0558105374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73185B3EF9DCC449C0F66E38 /* Assets.xcassets */; platformFilters = (macos, ); };
 		BE227FA7168B30B25194637B /* SingleFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D78538EB340A5115879AEB8 /* SingleFlight.swift */; };
-		BE5D1639299F8731EBF099F5 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726B0047C3F72608C3A0D9BE /* DeviceService.swift */; };
 		BE65E04ECBD04DEC59F8F792 /* DeviceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF31FF13AA4C03D9121B07E5 /* DeviceSearch.swift */; };
-		BED99DBF3D722F47CF822F41 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82059D6F994514C5F823D460 /* Snapshot.swift */; };
 		BF2D4E43C60F9309E79A89D1 /* DeviceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF31FF13AA4C03D9121B07E5 /* DeviceSearch.swift */; };
-		BF6C093D1111301C79C502DF /* DriftWidgetiOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1BE61830C38564D1CB989D89 /* DriftWidgetiOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C71842D7DDC667CDC8E62A6C /* HomeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19A3FCE510233987A0FB485 /* HomeWidget.swift */; platformFilters = (ios, ); };
 		CAB703E8A1EBECD036FFB21E /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140184EA9160B065E662C929 /* SetupFlow.swift */; };
-		CF1CD6A8E4FCFD4BB1A08562 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7F7DE820282B244B070704 /* Display.swift */; };
-		D2BED6FEF2EEDFB31A41D798 /* WidgetReload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D1DAA0A4C6A23A372D9991 /* WidgetReload.swift */; };
-		D7F340476D3AE25DAA3CADBD /* PowerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7218DE3B83A5B92EB4A7E574 /* PowerControl.swift */; };
-		DF3740BA17E996992BE03E7E /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA1EF84824DFDE34CBDD87 /* PrivacyPolicy.swift */; };
-		E00DBE9C4E503898C44D2796 /* DriftApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43254D57E4BD27A14185079F /* DriftApp.swift */; };
 		E01C3A6D389E81E7B0E27D10 /* WidgetActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E1175BC114FFF71DC0E7C /* WidgetActions.swift */; };
-		E45095519A7DC0B291F43BE5 /* FilterReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96771DF78E95D86B3AAC69B9 /* FilterReset.swift */; };
 		E9F835A75C4DD90285E2EAE4 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726B0047C3F72608C3A0D9BE /* DeviceService.swift */; };
 		EA461A149CE8C537C738BF00 /* MideaKit in Frameworks */ = {isa = PBXBuildFile; productRef = 506ABB229E3031D6FBF251F9 /* MideaKit */; };
-		EB50E4B31CBB8E1CAC3997CF /* PrivacySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCEDB11603F0465F8F12A9D /* PrivacySheet.swift */; };
 		ED9D7DCE2C1F7542CB684CD9 /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AA1EF84824DFDE34CBDD87 /* PrivacyPolicy.swift */; };
-		F69AE7BBCF0F86ACCDDED42E /* DeviceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF31FF13AA4C03D9121B07E5 /* DeviceSearch.swift */; };
+		F51EB6A72F275ED70723248B /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DEFB89E2AD0F0E64AC541AA /* ControlView.swift */; platformFilters = (ios, ); };
 		FB6C3C1D2FC4E24F2D2FE193 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82059D6F994514C5F823D460 /* Snapshot.swift */; };
 		FC71B748C56044CDCDF17162 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29D8D8F755481CFDBFA0791 /* Keychain.swift */; };
 /* End PBXBuildFile section */
@@ -120,27 +75,9 @@
 			remoteGlobalIDString = 5C564ED11782E91848719970;
 			remoteInfo = DriftWidget;
 		};
-		98BA417B48B47E42B75BF3C2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C57AFFDCB18AE227A2FF2ECA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 40D4A585456267EF632C36DE;
-			remoteInfo = DriftWidgetiOS;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		E898FFE9A6987DD51379988F /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				BF6C093D1111301C79C502DF /* DriftWidgetiOS.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E9172D29FDC438EA5075B0EE /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,19 +94,17 @@
 /* Begin PBXFileReference section */
 		0766CD340A82B81C54034AD9 /* DriftWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriftWidget.entitlements; sourceTree = "<group>"; };
 		0BB43A59867C58357EF6E650 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		0F759FA8F6D800CE5BAD454A /* DriftWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DriftWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F759FA8F6D800CE5BAD454A /* DriftWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = DriftWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		140184EA9160B065E662C929 /* SetupFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupFlow.swift; sourceTree = "<group>"; };
-		1BE61830C38564D1CB989D89 /* DriftWidgetiOS.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = DriftWidgetiOS.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		397EFE5B2C6380EC89E1E952 /* StoredDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredDevice.swift; sourceTree = "<group>"; };
 		43254D57E4BD27A14185079F /* DriftApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftApp.swift; sourceTree = "<group>"; };
 		4E42DD325D5A314F6B410019 /* DeviceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceStore.swift; sourceTree = "<group>"; };
 		4E4B74B23508E184D873F2CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		4FB0330BE148EA11E7F8B6FF /* DriftiOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DriftiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		552F5AE6789DA294DDB91E8B /* Drift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		552F5AE6789DA294DDB91E8B /* Drift.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Drift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55AA1EF84824DFDE34CBDD87 /* PrivacyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicy.swift; sourceTree = "<group>"; };
 		622C5D512658641BA0B5F6C7 /* DeviceSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSearchTests.swift; sourceTree = "<group>"; };
 		64B60D0427F47ACCC56992C1 /* TemperatureDial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureDial.swift; sourceTree = "<group>"; };
-		668D8D5951EB119A1624DDB2 /* DriftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		668D8D5951EB119A1624DDB2 /* DriftTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DriftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C08CCB9880609608E244900 /* Versions.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Versions.xcconfig; sourceTree = "<group>"; };
 		7141E70FF712CF8DB87B8A07 /* DriftWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftWidget.swift; sourceTree = "<group>"; };
 		7218DE3B83A5B92EB4A7E574 /* PowerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerControl.swift; sourceTree = "<group>"; };
@@ -185,7 +120,6 @@
 		9D6E3601FE21EF3E9BBEE91B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D78538EB340A5115879AEB8 /* SingleFlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleFlight.swift; sourceTree = "<group>"; };
 		AC4A822516F506CCCB31ACB5 /* SetupRetryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupRetryTests.swift; sourceTree = "<group>"; };
-		AE5968268A799E393A8D8F57 /* DriftiOSTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DriftiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B19A3FCE510233987A0FB485 /* HomeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWidget.swift; sourceTree = "<group>"; };
 		B22ED8F4F11C6CDA18D3FC67 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BD1EB824ECBEC88EA7E1EB09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -212,22 +146,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		251DEFBF51FACDD394C22A4F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				40932BBA764F32EA59960FFF /* MideaKit in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		824C3B9CFD44D0B436F8181E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2162EF46F1D53508B080D14F /* MideaKit in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A25014544D76C0C0B68CB0E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -244,14 +162,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FADE4A84FCD376944AAB2866 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				026FABA88E7EFD621C463C79 /* MideaKit in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -259,11 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				552F5AE6789DA294DDB91E8B /* Drift.app */,
-				4FB0330BE148EA11E7F8B6FF /* DriftiOS.app */,
-				AE5968268A799E393A8D8F57 /* DriftiOSTests.xctest */,
 				668D8D5951EB119A1624DDB2 /* DriftTests.xctest */,
 				0F759FA8F6D800CE5BAD454A /* DriftWidget.appex */,
-				1BE61830C38564D1CB989D89 /* DriftWidgetiOS.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -390,26 +297,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		40D4A585456267EF632C36DE /* DriftWidgetiOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A4159E37A38733B85C776F6D /* Build configuration list for PBXNativeTarget "DriftWidgetiOS" */;
-			buildPhases = (
-				FB034755B879C90CD61BB828 /* Sources */,
-				11F8CE370584047F77B47183 /* Resources */,
-				251DEFBF51FACDD394C22A4F /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DriftWidgetiOS;
-			packageProductDependencies = (
-				92C5CEF34C237610743E7C3B /* MideaKit */,
-			);
-			productName = DriftWidgetiOS;
-			productReference = 1BE61830C38564D1CB989D89 /* DriftWidgetiOS.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		50A0CCC2E8C96C468D93CEF8 /* DriftTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 879E54EDE3CD8FA31DF9345C /* Build configuration list for PBXNativeTarget "DriftTests" */;
@@ -449,47 +336,6 @@
 			productReference = 0F759FA8F6D800CE5BAD454A /* DriftWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		B8D21EF6019FB39584E93284 /* DriftiOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CE40CC1AE73AE992CCC9A160 /* Build configuration list for PBXNativeTarget "DriftiOS" */;
-			buildPhases = (
-				66AB9EB16B28652FBCC0D596 /* Sources */,
-				114670643CAE95E4A4188DE6 /* Resources */,
-				824C3B9CFD44D0B436F8181E /* Frameworks */,
-				E898FFE9A6987DD51379988F /* Embed Foundation Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				14CE694595481705ED3C5D10 /* PBXTargetDependency */,
-			);
-			name = DriftiOS;
-			packageProductDependencies = (
-				EBB2F865A2465BEEA7E0B097 /* MideaKit */,
-			);
-			productName = DriftiOS;
-			productReference = 4FB0330BE148EA11E7F8B6FF /* DriftiOS.app */;
-			productType = "com.apple.product-type.application";
-		};
-		C167C32CE99D778E7FA7FE00 /* DriftiOSTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 565F7206033E5E0351098D7F /* Build configuration list for PBXNativeTarget "DriftiOSTests" */;
-			buildPhases = (
-				D16E29F3EA15BDB9401B0DA2 /* Sources */,
-				FADE4A84FCD376944AAB2866 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DriftiOSTests;
-			packageProductDependencies = (
-				CB79B697968BD471A55A1E60 /* MideaKit */,
-			);
-			productName = DriftiOSTests;
-			productReference = AE5968268A799E393A8D8F57 /* DriftiOSTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		CAEDCE34417A91D973F68377 /* Drift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F406649AF13D92F90944A7F1 /* Build configuration list for PBXNativeTarget "Drift" */;
@@ -521,23 +367,11 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					40D4A585456267EF632C36DE = {
-						DevelopmentTeam = N5L2AL4B83;
-						ProvisioningStyle = Automatic;
-					};
 					50A0CCC2E8C96C468D93CEF8 = {
 						DevelopmentTeam = N5L2AL4B83;
 						ProvisioningStyle = Automatic;
 					};
 					5C564ED11782E91848719970 = {
-						DevelopmentTeam = N5L2AL4B83;
-						ProvisioningStyle = Automatic;
-					};
-					B8D21EF6019FB39584E93284 = {
-						DevelopmentTeam = N5L2AL4B83;
-						ProvisioningStyle = Automatic;
-					};
-					C167C32CE99D778E7FA7FE00 = {
 						DevelopmentTeam = N5L2AL4B83;
 						ProvisioningStyle = Automatic;
 					};
@@ -566,32 +400,12 @@
 			targets = (
 				CAEDCE34417A91D973F68377 /* Drift */,
 				5C564ED11782E91848719970 /* DriftWidget */,
-				B8D21EF6019FB39584E93284 /* DriftiOS */,
-				40D4A585456267EF632C36DE /* DriftWidgetiOS */,
 				50A0CCC2E8C96C468D93CEF8 /* DriftTests */,
-				C167C32CE99D778E7FA7FE00 /* DriftiOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		114670643CAE95E4A4188DE6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				70D5A6FD642D9163C8DFAA3F /* Assets.xcassets in Resources */,
-				4577F16CFACAC99D07BA3FE4 /* PrivacyInfo.xcprivacy in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		11F8CE370584047F77B47183 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6070E24AAE2E6A0940962148 /* PrivacyInfo.xcprivacy in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5FAF94EEB8CC6A6E2DB39954 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -605,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6287EB06EFF4B0558105374 /* Assets.xcassets in Resources */,
+				3DB55231AEFFEAF061081984 /* Assets.xcassets in Resources */,
 				5AD226833AD988B7DD7D1C5A /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,20 +431,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D627D045040247031BC54C6 /* BackgroundRelease.swift in Sources */,
 				084CF313F43244E2564304A3 /* ContentView.swift in Sources */,
+				F51EB6A72F275ED70723248B /* ControlView.swift in Sources */,
 				BF2D4E43C60F9309E79A89D1 /* DeviceSearch.swift in Sources */,
 				E9F835A75C4DD90285E2EAE4 /* DeviceService.swift in Sources */,
 				9108B8F9A0036E788ECB3BA2 /* DeviceStore.swift in Sources */,
 				88C650294DAC2DC7F0913DA7 /* Display.swift in Sources */,
 				AB18A40EC3B2B9F65B584E45 /* DriftApp.swift in Sources */,
+				9729BAC8516F6283B1D507EF /* DriftApp.swift in Sources */,
 				210F12780D0FC2099574F697 /* FilterReset.swift in Sources */,
 				A4AD197209BB26B07C72F989 /* Keychain.swift in Sources */,
 				A80B78330BA04AC026FB2F01 /* PrivacyPolicy.swift in Sources */,
+				127C57FE55233319ABA90733 /* PrivacySheet.swift in Sources */,
 				CAB703E8A1EBECD036FFB21E /* SetupFlow.swift in Sources */,
 				589D5E20A863CF25D021A56A /* SetupNetwork.swift in Sources */,
+				89DAB16E0332F0D709DCA237 /* SetupView.swift in Sources */,
 				BE227FA7168B30B25194637B /* SingleFlight.swift in Sources */,
 				7033275516E1A6C801FB7EA2 /* Snapshot.swift in Sources */,
 				33905B5B795F3D994E3B8FBF /* StoredDevice.swift in Sources */,
+				A556AC427714B1027AF0DB39 /* TemperatureDial.swift in Sources */,
 				5D525330F388FCE56B88DF6F /* WidgetReload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -643,38 +464,14 @@
 				850A53D4127B09378E34434F /* Display.swift in Sources */,
 				2A13016278411FA1C34E444C /* DriftWidget.swift in Sources */,
 				0F3E5C78205667A2B6CCCD5F /* FilterReset.swift in Sources */,
+				C71842D7DDC667CDC8E62A6C /* HomeWidget.swift in Sources */,
 				995E6FE4603B767B258A01ED /* Keychain.swift in Sources */,
+				81E9A0C7A00E9B8511FBA5E0 /* PowerControl.swift in Sources */,
 				151289622E1C9BEA2B277606 /* SingleFlight.swift in Sources */,
 				FB6C3C1D2FC4E24F2D2FE193 /* Snapshot.swift in Sources */,
 				794CD0F15E3400E6F16BF389 /* StoredDevice.swift in Sources */,
 				E01C3A6D389E81E7B0E27D10 /* WidgetActions.swift in Sources */,
 				656743D530E8FF065F974528 /* WidgetReload.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66AB9EB16B28652FBCC0D596 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0C7FF9FB4729906F54DA6B61 /* BackgroundRelease.swift in Sources */,
-				70FDD63B79948AE2FB2A3911 /* ControlView.swift in Sources */,
-				5DDBE0E2D76C6ACAD0A0CADB /* DeviceSearch.swift in Sources */,
-				A08E2652047BCCB01EEA68AC /* DeviceService.swift in Sources */,
-				42F7F2D8236B645A12357F65 /* DeviceStore.swift in Sources */,
-				9B982FA8B4C5B075B43B53C4 /* Display.swift in Sources */,
-				E00DBE9C4E503898C44D2796 /* DriftApp.swift in Sources */,
-				E45095519A7DC0B291F43BE5 /* FilterReset.swift in Sources */,
-				9BCF25FE62F4AD67BB3B281A /* Keychain.swift in Sources */,
-				DF3740BA17E996992BE03E7E /* PrivacyPolicy.swift in Sources */,
-				EB50E4B31CBB8E1CAC3997CF /* PrivacySheet.swift in Sources */,
-				24F6A552665FC46BCFA2E6EA /* SetupFlow.swift in Sources */,
-				5347BE63E22BF1CB28C2687D /* SetupNetwork.swift in Sources */,
-				9065AE8FA9C06AD0A530E7C5 /* SetupView.swift in Sources */,
-				5AA5D79D4E06211F69A6173B /* SingleFlight.swift in Sources */,
-				79FDFDCDFBAE8FABE25C966F /* Snapshot.swift in Sources */,
-				164D3BF42B45C0E5BF7DFDB1 /* StoredDevice.swift in Sources */,
-				7003055951C64834C96A0F10 /* TemperatureDial.swift in Sources */,
-				D2BED6FEF2EEDFB31A41D798 /* WidgetReload.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,56 +498,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D16E29F3EA15BDB9401B0DA2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F69AE7BBCF0F86ACCDDED42E /* DeviceSearch.swift in Sources */,
-				708979A47405C17BA4216BEE /* DeviceSearchTests.swift in Sources */,
-				BE5D1639299F8731EBF099F5 /* DeviceService.swift in Sources */,
-				7887330709917C7F9FE1B80F /* DeviceStore.swift in Sources */,
-				CF1CD6A8E4FCFD4BB1A08562 /* Display.swift in Sources */,
-				52110B7A88A31D4FEA3C7B46 /* FilterReset.swift in Sources */,
-				3C9D4AE83DE0439F5D725D34 /* Keychain.swift in Sources */,
-				7367FAF48C0853E0DC94F67F /* PrivacyPolicy.swift in Sources */,
-				B37E4159028714B8591268E0 /* SetupFlow.swift in Sources */,
-				6265B809118175906C116D07 /* SetupNetwork.swift in Sources */,
-				59306CDD23B5910D90728400 /* SetupRetryTests.swift in Sources */,
-				8C2EA42313DDB2B4A103C7BB /* SingleFlight.swift in Sources */,
-				0EDD80C8A15F16A562D63A13 /* SingleFlightTests.swift in Sources */,
-				362A795537F9BDD8C7CF27C1 /* Snapshot.swift in Sources */,
-				6BF0184946F63E674741EFDB /* StoredDevice.swift in Sources */,
-				7A4828B0F63CD16C8B806592 /* WidgetReload.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FB034755B879C90CD61BB828 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2BE4ED1970F9FAAFDBFE62CE /* DeviceSearch.swift in Sources */,
-				B948E7E3F1B8F9B8E2F27942 /* DeviceService.swift in Sources */,
-				9C89D007F4579435CA057390 /* Display.swift in Sources */,
-				102A4382A1D98841F3053945 /* FilterReset.swift in Sources */,
-				6B7117B28CF26E411CAC0815 /* HomeWidget.swift in Sources */,
-				1DC30AA49FBE456A91B72669 /* Keychain.swift in Sources */,
-				D7F340476D3AE25DAA3CADBD /* PowerControl.swift in Sources */,
-				2DCEFFDC40881EEA50E4A09F /* SingleFlight.swift in Sources */,
-				BED99DBF3D722F47CF822F41 /* Snapshot.swift in Sources */,
-				486D15BDB94DC2ED24BBBD09 /* StoredDevice.swift in Sources */,
-				956BFC38F09CBB919D68B5BA /* WidgetActions.swift in Sources */,
-				8D425AC8260E5BD8AF20CCE7 /* WidgetReload.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		14CE694595481705ED3C5D10 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 40D4A585456267EF632C36DE /* DriftWidgetiOS */;
-			targetProxy = 98BA417B48B47E42B75BF3C2 /* PBXContainerItemProxy */;
-		};
 		305DB1E8D9A2D9302E7F4CB2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5C564ED11782E91848719970 /* DriftWidget */;
@@ -763,15 +513,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"COMBINE_HIDPI_IMAGES[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.DriftTests;
-				SDKROOT = macosx;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -829,66 +589,74 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
-		25FC321BCDA91BC0896F9727 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = iOSApp/Drift.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = iOSApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.Drift;
-				PRODUCT_NAME = Drift;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
 		2951B50D01E4E3573A1042D6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Widget/DriftWidget.entitlements;
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = iOSWidget/DriftWidget.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = Widget/DriftWidget.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"COMBINE_HIDPI_IMAGES[sdk=macosx*]" = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Widget/Info.plist;
+				"INFOPLIST_FILE[sdk=iphone*]" = iOSWidget/Info.plist;
+				"INFOPLIST_FILE[sdk=macosx*]" = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.Drift.Widget;
 				PRODUCT_NAME = DriftWidget;
-				SDKROOT = macosx;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		2F9515DC845B8780F5762A42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Widget/DriftWidget.entitlements;
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = iOSWidget/DriftWidget.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = Widget/DriftWidget.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"COMBINE_HIDPI_IMAGES[sdk=macosx*]" = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Widget/Info.plist;
+				"INFOPLIST_FILE[sdk=iphone*]" = iOSWidget/Info.plist;
+				"INFOPLIST_FILE[sdk=macosx*]" = Widget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.Drift.Widget;
 				PRODUCT_NAME = DriftWidget;
-				SDKROOT = macosx;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -896,34 +664,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"COMBINE_HIDPI_IMAGES[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.DriftTests;
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		670292AD9FB7606A675943A0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = iOSApp/Drift.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = iOSApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.Drift;
-				PRODUCT_NAME = Drift;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -931,34 +690,31 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = App/Drift.entitlements;
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = iOSApp/Drift.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = App/Drift.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"COMBINE_HIDPI_IMAGES[sdk=macosx*]" = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = App/Info.plist;
+				"INFOPLIST_FILE[sdk=iphone*]" = iOSApp/Info.plist;
+				"INFOPLIST_FILE[sdk=macosx*]" = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.Drift;
 				PRODUCT_NAME = Drift;
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		D1FAA20E0320FD4F1FD15FEA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.DriftiOSTests;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1023,79 +779,41 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
-		D3531C9A29E3F61DE378E91B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = iOSWidget/DriftWidget.entitlements;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = iOSWidget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.Drift.Widget;
-				PRODUCT_NAME = DriftWidget;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 		D912882FFA52AB5EEF2B7B2D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = App/Drift.entitlements;
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_HARDENED_RUNTIME = YES;
+				"CODE_SIGN_ENTITLEMENTS[sdk=iphone*]" = iOSApp/Drift.entitlements;
+				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = App/Drift.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				"COMBINE_HIDPI_IMAGES[sdk=macosx*]" = YES;
+				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = App/Info.plist;
+				"INFOPLIST_FILE[sdk=iphone*]" = iOSApp/Info.plist;
+				"INFOPLIST_FILE[sdk=macosx*]" = App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.Drift;
 				PRODUCT_NAME = Drift;
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		EE66E1BEB1D52DC513200C93 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.DriftiOSTests;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		F45FDD26800435CA333A9D07 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = iOSWidget/DriftWidget.entitlements;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = iOSWidget/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = cc.hafa.Drift.Widget;
-				PRODUCT_NAME = DriftWidget;
-				SDKROOT = iphoneos;
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1103,15 +821,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		565F7206033E5E0351098D7F /* Build configuration list for PBXNativeTarget "DriftiOSTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EE66E1BEB1D52DC513200C93 /* Debug */,
-				D1FAA20E0320FD4F1FD15FEA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
 		64253FBDEFDF726903345D50 /* Build configuration list for PBXNativeTarget "DriftWidget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1135,24 +844,6 @@
 			buildConfigurations = (
 				1BA2EF094074FE68869BD7E3 /* Debug */,
 				593F12B4C11F2DF5725E88BE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		A4159E37A38733B85C776F6D /* Build configuration list for PBXNativeTarget "DriftWidgetiOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F45FDD26800435CA333A9D07 /* Debug */,
-				D3531C9A29E3F61DE378E91B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
-		};
-		CE40CC1AE73AE992CCC9A160 /* Build configuration list for PBXNativeTarget "DriftiOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				25FC321BCDA91BC0896F9727 /* Debug */,
-				670292AD9FB7606A675943A0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1186,21 +877,6 @@
 			productName = MideaKit;
 		};
 		506ABB229E3031D6FBF251F9 /* MideaKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62CAC3B1F4814EA5CB2AC3A3 /* XCRemoteSwiftPackageReference "MideaKit" */;
-			productName = MideaKit;
-		};
-		92C5CEF34C237610743E7C3B /* MideaKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62CAC3B1F4814EA5CB2AC3A3 /* XCRemoteSwiftPackageReference "MideaKit" */;
-			productName = MideaKit;
-		};
-		CB79B697968BD471A55A1E60 /* MideaKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 62CAC3B1F4814EA5CB2AC3A3 /* XCRemoteSwiftPackageReference "MideaKit" */;
-			productName = MideaKit;
-		};
-		EBB2F865A2465BEEA7E0B097 /* MideaKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 62CAC3B1F4814EA5CB2AC3A3 /* XCRemoteSwiftPackageReference "MideaKit" */;
 			productName = MideaKit;
