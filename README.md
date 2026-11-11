@@ -51,8 +51,8 @@ set of test vectors so the two apps behave identically.
 ## Building
 
 - **macOS and iOS:** `cd apple && xcodegen generate && open Drift.xcodeproj`, then
-  build the `Drift` (macOS) or `DriftiOS` scheme. `MideaKit` resolves remotely via
-  SwiftPM.
+  run the `Drift` scheme on a Mac or an iPhone destination. `MideaKit` resolves
+  remotely via SwiftPM.
 - **Android:** `cd android && ./gradlew installDebug`. `mideakt` resolves
   remotely via JitPack.
 - **Site:** `cd site && bun install && bun dev`.

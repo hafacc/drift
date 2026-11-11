@@ -18,6 +18,9 @@ Shared/        Code compiled into every target (Keychain, Snapshot, DeviceServic
 project.yml    xcodegen spec → Drift.xcodeproj (points at the MideaKit package)
 ```
 
+One `Drift` target builds both apps and one `DriftWidget` target builds both widget
+extensions; `App/` and `Widget/` are compiled only for macOS, `iOSApp/` and `iOSWidget/`
+only for iOS, and each platform keeps its own Info.plist and entitlements in its folder.
 The two apps share the bundle ID `cc.hafa.Drift`, for a universal purchase.
 
 ## First-time setup
@@ -30,12 +33,12 @@ The two apps share the bundle ID `cc.hafa.Drift`, for a universal purchase.
    ```
    open apple/Drift.xcodeproj
    ```
-3. For each app and widget target (`Drift`, `DriftWidget`, `DriftiOS`,
-   `DriftWidgetiOS`) → *Signing & Capabilities*, confirm the **Keychain Sharing**
-   group `cc.hafa.Drift.shared` is present. (Keychain sharing works within your
-   team — no paid account needed.) The iOS targets also share the App Group
-   `group.cc.hafa.Drift`; the macOS ones use the Team-ID-prefixed form.
-4. Select the `Drift` (macOS) or `DriftiOS` scheme and Run.
+3. For the app and widget targets (`Drift`, `DriftWidget`) → *Signing & Capabilities*,
+   confirm the **Keychain Sharing** group `cc.hafa.Drift.shared` is present.
+   (Keychain sharing works within your team — no paid account needed.) On iOS they
+   also share the App Group `group.cc.hafa.Drift`; on macOS they use the
+   Team-ID-prefixed form.
+4. Select the `Drift` scheme, pick a Mac or an iPhone destination, and Run.
 
 On first run the app shows a **Set Up** screen: it discovers the AC on the LAN
 and fetches its key once from Midea's cloud, signing in with the Midea account
@@ -52,8 +55,8 @@ they connect themselves.
 iOS blocks broadcast sends without the `com.apple.developer.networking.multicast`
 entitlement, which has been requested from Apple. Until it's granted, the discovery
 broadcast fails and the probes sent to each host on the subnet find the AC. Once Apple
-grants it, add `com.apple.developer.networking.multicast: true` to the `DriftiOS` and
-`DriftWidgetiOS` entitlements in `project.yml`.
+grants it, add `com.apple.developer.networking.multicast` (true) to
+`iOSApp/Drift.entitlements` and `iOSWidget/DriftWidget.entitlements`.
 
 ## Regenerating the project
 

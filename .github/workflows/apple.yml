@@ -42,4 +42,4 @@ jobs:
       - run: make lint
       # the team's signing certificate isn't on the runner, and the tests don't need it
       - run: xcodebuild test -project Drift.xcodeproj -scheme Drift -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO
-      - run: xcodebuild test -project Drift.xcodeproj -scheme DriftiOS -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO
+      - run: xcodebuild test -project Drift.xcodeproj -scheme Drift -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO
