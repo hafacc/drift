@@ -1,5 +1,5 @@
 // The version the store shows, per platform. The macos-cut and ios-cut workflows rewrite
 // these lines; keep each on one line.
-MARKETING_VERSION[sdk=macosx*] = 0.1.0
+MARKETING_VERSION[sdk=macosx*] = 0.1.1
 MARKETING_VERSION[sdk=iphoneos*] = 0.1.0
 MARKETING_VERSION[sdk=iphonesimulator*] = 0.1.0
