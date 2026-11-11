@@ -16,24 +16,30 @@ on:
         default: ""
 
 jobs:
-  # which of the jobs below run: on a pull request those whose folder it touches
-  # (all of them when it touches the workflows), the caller's `only` when called,
+  # which of the jobs below run: on a pull request or a push those whose folder it
+  # touches (all of them when it touches this file), the caller's `only` when called,
   # and otherwise all
   changes:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read # list the pull request's files
     outputs:
+      site: ${{ steps.pick.outputs.site }}
       android: ${{ steps.pick.outputs.android }}
       apple: ${{ steps.pick.outputs.apple }}
     steps:
+      # a push is compared with git, a pull request through the API
+      - uses: actions/checkout@v7
+        if: github.event_name == 'push'
       - uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4
         id: touched
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
         with:
           filters: |
             all:
-              - .github/workflows/**
+              - .github/workflows/build.yml
+            site:
+              - site/**
             android:
               - android/**
             apple:
@@ -44,8 +50,8 @@ jobs:
           touched: ${{ steps.touched.outputs.changes }}
           only: ${{ inputs.only }}
         run: |
-          for job in android apple; do
-            if [ "$event" = pull_request ]; then
+          for job in site android apple; do
+            if [ "$event" = pull_request ] || [ "$event" = push ]; then
               run=$(jq --arg job "$job" 'any(. == $job or . == "all")' <<< "$touched")
             elif [ -n "$only" ]; then
               case " $only " in *" $job "*) run=true ;; *) run=false ;; esac
@@ -54,6 +60,22 @@ jobs:
             fi
             echo "$job=$run" >> "$GITHUB_OUTPUT"
           done
+
+  site:
+    needs: changes
+    if: needs.changes.outputs.site == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun lint
+      - run: bun export
 
   android:
     needs: changes
