@@ -1,4 +1,6 @@
-# Cut a release of the iOS app: bump its version and tag it. Xcode Cloud builds from the tag.
+# Cut a release of the iOS app: test main's tip, bump the version on top of exactly that
+# commit and push the bump and its tag to main together. Xcode Cloud builds from the tag.
+# Started by hand, or by cut.yml.
 name: ios-cut
 
 on:
@@ -9,22 +11,99 @@ on:
         type: choice
         options: [patch, minor, major]
         default: patch
+  workflow_call:
+    inputs:
+      bump:
+        description: semver bump (patch, minor or major)
+        type: string
+        default: patch
+
+# one cut at a time across every cut workflow, held from before the tests until the push, so
+# main moves only by a merge, which the push then refuses
+concurrency:
+  group: cut
+  cancel-in-progress: false
+  queue: max
 
 permissions: {}
 
 jobs:
-  cut:
-    uses: ./.github/workflows/cut-app.yml
-    with:
-      app: ios
-      bump: ${{ inputs.bump }}
-    # one cut at a time across every cut workflow, held from before the tests until the push
-    concurrency:
-      group: cut
-      cancel-in-progress: false
-      queue: max
+  pin:
+    runs-on: ubuntu-latest
     permissions:
-      contents: write # push the bump + tag
-      actions: write # start the publish
+      contents: read
+    outputs:
+      sha: ${{ steps.pin.outputs.sha }}
+    steps:
+      - id: pin
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # main's tip now, not the dispatch SHA: a cut that waited its turn starts from the cuts before it
+        run: echo "sha=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)" >> "$GITHUB_OUTPUT"
+
+  gate:
+    needs: pin
+    uses: ./.github/workflows/build.yml
+    with:
+      only: apple
+      ref: ${{ needs.pin.outputs.sha }}
+    permissions:
+      contents: read
       pull-requests: read # build.yml asks for it; unused here
+
+  cut:
+    needs: [pin, gate]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # push the bump and tag
       checks: read # see that Xcode Cloud started
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.pin.outputs.sha }} # the commit the gate tested
+      - name: bump, commit and tag
+        id: bump
+        env:
+          bump: ${{ inputs.bump }}
+        run: |
+          # apple/Config/Versions.xcconfig is the version source of truth, once for devices and once for the simulator
+          config=apple/Config/Versions.xcconfig
+          IFS=. read -r major minor patch <<< "$(grep -F "MARKETING_VERSION[sdk=iphoneos*] = " "$config" | sed 's/.* = //')"
+          case "$bump" in
+            major) version="$((major + 1)).0.0" ;;
+            minor) version="$major.$((minor + 1)).0" ;;
+            *) version="$major.$minor.$((patch + 1))" ;;
+          esac
+          sed -i "s/^MARKETING_VERSION\\[sdk=\\(iphoneos\\|iphonesimulator\\)\\*\\] = .*/MARKETING_VERSION[sdk=\\1*] = $version/" "$config"
+          grep -Fx "MARKETING_VERSION[sdk=iphoneos*] = $version" "$config"
+          grep -Fx "MARKETING_VERSION[sdk=iphonesimulator*] = $version" "$config"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -am "ios v$version"
+          git tag -a "ios-v$version" -m "ios v$version"
+          echo "tag=ios-v$version" >> "$GITHUB_OUTPUT"
+      - name: push
+        env:
+          tag: ${{ steps.bump.outputs.tag }}
+        # all or nothing: a refused main or tag leaves neither pushed. Xcode Cloud watches the
+        # repository itself, so a token-pushed tag still starts its build
+        run: git push --atomic origin HEAD:main "refs/tags/$tag"
+      - name: check that Xcode Cloud started
+        env:
+          GH_TOKEN: ${{ github.token }}
+          tag: ${{ steps.bump.outputs.tag }}
+        # Xcode Cloud puts a check on a tag's commit when it starts on it; a tag it never saw gets
+        # none. Waiting here also keeps the next cut's tag minutes after this one: of two tags
+        # pushed in the same second, Xcode Cloud builds only the last
+        run: |
+          for _ in $(seq 20); do
+            started=$(gh api "repos/$GITHUB_REPOSITORY/commits/$tag/check-runs" \
+              --jq '[.check_runs[] | select(.app.name == "Xcode Cloud")] | length')
+            if [ "$started" -gt 0 ]; then
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "::error::Xcode Cloud did not start on $tag. Start that build by hand in App Store Connect, from the tag."
+          exit 1
