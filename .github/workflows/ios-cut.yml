@@ -18,8 +18,7 @@ on:
         type: string
         default: patch
 
-# one cut at a time across every cut workflow, held from before the tests until the push, so
-# main moves only by a merge, which the push then refuses
+# one cut at a time across every cut workflow, held from the test until the push
 concurrency:
   group: cut
   cancel-in-progress: false
@@ -28,31 +27,15 @@ concurrency:
 permissions: {}
 
 jobs:
-  pin:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    outputs:
-      sha: ${{ steps.pin.outputs.sha }}
-    steps:
-      - id: pin
-        env:
-          GH_TOKEN: ${{ github.token }}
-        # main's tip now, not the dispatch SHA: a cut that waited its turn starts from the cuts before it
-        run: echo "sha=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)" >> "$GITHUB_OUTPUT"
-
-  gate:
-    needs: pin
-    uses: ./.github/workflows/build.yml
+  test:
+    uses: ./.github/workflows/apple.yml
     with:
-      only: apple
-      ref: ${{ needs.pin.outputs.sha }}
+      ref: main # its tip now, so a cut that waited its turn tests the cuts before it
     permissions:
       contents: read
-      pull-requests: read # build.yml asks for it; unused here
 
   cut:
-    needs: [pin, gate]
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: write # push the bump and tag
@@ -60,7 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          ref: ${{ needs.pin.outputs.sha }} # the commit the gate tested
+          ref: ${{ needs.test.outputs.sha }} # a main that moved since is refused by the push
       - name: bump, commit and tag
         id: bump
         env:
