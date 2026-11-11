@@ -1,0 +1,30 @@
+# Cut a release of the Android app: bump its version on main, tag it, then start
+# android-publish.yml on the tag.
+name: android-cut
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: semver bump
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+
+permissions: {}
+
+jobs:
+  cut:
+    uses: ./.github/workflows/cut-app.yml
+    with:
+      app: android
+      bump: ${{ inputs.bump }}
+    # one cut at a time across every cut workflow, held from before the tests until the push
+    concurrency:
+      group: cut
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write # push the bump + tag
+      actions: write # start the publish
+      pull-requests: read # build.yml asks for it; unused here

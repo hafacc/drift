@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Android 12 and later: keep the AC's key and the setup record out of cloud backup and
+     device transfer. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="sharedpref" path="drift_secure.xml" />
+        <exclude domain="file" path="setup.log" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="sharedpref" path="drift_secure.xml" />
+        <exclude domain="file" path="setup.log" />
+    </device-transfer>
+</data-extraction-rules>

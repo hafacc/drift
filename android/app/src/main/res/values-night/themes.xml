@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark window behind Compose in dark mode, so launch and resize don't flash light. -->
+    <style name="Theme.Drift" parent="@android:style/Theme.Material.NoActionBar" />
+</resources>

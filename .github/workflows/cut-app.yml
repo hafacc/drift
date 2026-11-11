@@ -1,0 +1,116 @@
+# Cut a release of one app: test main's tip, then bump, commit and tag the app on top of
+# exactly that commit and start what publishes it. Called by cut.yml and the *-cut workflows.
+# The calling job holds the `cut` lock from before the tests until the push, so
+# no other cut lands in between; a main that moved for any other reason is refused by the
+# push, before the tag exists.
+name: cut-app
+
+on:
+  workflow_call:
+    inputs:
+      app:
+        description: android
+        type: string
+        required: true
+      bump:
+        description: semver bump (patch, minor or major)
+        type: string
+        default: patch
+
+permissions: {}
+
+jobs:
+  pin:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      sha: ${{ steps.pin.outputs.sha }}
+      only: ${{ steps.pin.outputs.only }}
+    steps:
+      - id: pin
+        env:
+          GH_TOKEN: ${{ github.token }}
+          app: ${{ inputs.app }}
+        # main's tip now, not the dispatch SHA: a cut that waited its turn starts from the cuts before it
+        run: |
+          echo "sha=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)" >> "$GITHUB_OUTPUT"
+          case "$app" in
+            android) only="android" ;;
+            *)
+              echo "::error::unknown app: $app"
+              exit 1
+              ;;
+          esac
+          echo "only=$only" >> "$GITHUB_OUTPUT"
+
+  gate:
+    needs: pin
+    uses: ./.github/workflows/build.yml
+    with:
+      only: ${{ needs.pin.outputs.only }}
+      ref: ${{ needs.pin.outputs.sha }}
+    permissions:
+      contents: read
+      pull-requests: read # build.yml asks for it; unused here
+
+  cut:
+    needs: [pin, gate]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # push the bump and tag
+      actions: write # start the publish
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.pin.outputs.sha }} # the commit the gate tested
+      - name: bump, commit and tag
+        id: bump
+        env:
+          app: ${{ inputs.app }}
+          bump: ${{ inputs.bump }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          next() {
+            IFS=. read -r major minor patch <<< "$1"
+            case "$bump" in
+              major) echo "$((major + 1)).0.0" ;;
+              minor) echo "$major.$((minor + 1)).0" ;;
+              *) echo "$major.$minor.$((patch + 1))" ;;
+            esac
+          }
+
+          case "$app" in
+            android)
+              # android/app/build.gradle.kts is the version source of truth
+              gradle=android/app/build.gradle.kts
+              version=$(next "$(sed -nE 's/^ *versionName = "([^"]+)"/\1/p' "$gradle")")
+              code=$(sed -nE 's/^ *versionCode = ([0-9]+)/\1/p' "$gradle")
+              # Play rejects a versionCode it has already seen, so it only ever goes up
+              sed -i -E \
+                -e "s/^( *versionName = )\"[^\"]+\"/\1\"$version\"/" \
+                -e "s/^( *versionCode = )[0-9]+/\1$((code + 1))/" \
+                "$gradle"
+              grep -F "versionName = \"$version\"" "$gradle"
+              grep -F "versionCode = $((code + 1))" "$gradle"
+              ;;
+          esac
+
+          git commit -am "$app v$version"
+          git tag -a "$app-v$version" -m "$app v$version"
+          echo "tag=$app-v$version" >> "$GITHUB_OUTPUT"
+      - name: push and start the publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          app: ${{ inputs.app }}
+          tag: ${{ steps.bump.outputs.tag }}
+        run: |
+          # branch first, tag second (never --follow-tags): a main that is no longer the tested commit is rejected before the tag exists
+          git push origin HEAD:main
+          git push origin "$tag"
+          # a tag pushed with this token doesn't fire on:push, so start this directly
+          if [ "$app" = android ]; then
+            gh workflow run android-publish.yml --ref main -f tag="$tag"
+          fi
