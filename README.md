@@ -14,18 +14,24 @@ reverse-engineered, so we can control the unit ourselves.
 ## Apps
 
 ```
+apple/    SwiftUI apps for macOS and iPhone, with widgets and a Control Center control; uses the published MideaKit Swift package.
 android/  Jetpack Compose app + Quick Settings tile + home widget; uses the published mideakt library.
 ```
 
 Each app discovers the device and fetches its key **itself** during first-run
-setup, storing it in a platform-appropriate secure store (encrypted preferences on
-Android). After that, all control is purely local.
+setup, storing it in a platform-appropriate secure store (Keychain on macOS and iOS,
+encrypted preferences on Android). After that, all control is purely local.
 
-The protocol itself lives in a native library, published as a standalone
-package and consumed **remotely** (no in-repo copy):
+The protocol itself lives in two native libraries, published as standalone
+packages and consumed **remotely** (no in-repo copies):
 
+- **Swift — [`hafacc/MideaKit`](https://github.com/hafacc/MideaKit)** via SwiftPM
+  (pinned in `apple/project.yml`).
 - **Kotlin — [`hafacc/mideakt`](https://github.com/hafacc/mideakt)** via JitPack
   (`com.github.hafacc:mideakt` in `android/app/build.gradle.kts`).
+
+Both are ports of the same reference implementation, verified against a shared
+set of test vectors so the two apps behave identically.
 
 ## Protocol notes
 
@@ -35,8 +41,14 @@ package and consumed **remotely** (no in-repo copy):
 - "V1/V2" firmware: controllable with no credentials.
 - "V3" firmware (ours): the session is AES-encrypted and needs a per-device
   **token + key**, fetched once from Midea's cloud, then used purely locally.
+- macOS gotcha: the host app needs **Local Network** permission (System Settings
+  → Privacy & Security → Local Network), and the discovery socket must set
+  `SO_BROADCAST` even for a subnet-directed broadcast or macOS returns EACCES.
 
 ## Building
 
+- **macOS and iOS:** `cd apple && xcodegen generate && open Drift.xcodeproj`, then
+  build the `Drift` (macOS) or `DriftiOS` scheme. `MideaKit` resolves remotely via
+  SwiftPM.
 - **Android:** `cd android && ./gradlew installDebug`. `mideakt` resolves
   remotely via JitPack.

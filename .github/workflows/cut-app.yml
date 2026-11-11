@@ -9,7 +9,7 @@ on:
   workflow_call:
     inputs:
       app:
-        description: android
+        description: android, macos or ios
         type: string
         required: true
       bump:
@@ -37,6 +37,7 @@ jobs:
           echo "sha=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)" >> "$GITHUB_OUTPUT"
           case "$app" in
             android) only="android" ;;
+            macos | ios) only="apple" ;;
             *)
               echo "::error::unknown app: $app"
               exit 1
@@ -60,6 +61,7 @@ jobs:
     permissions:
       contents: write # push the bump and tag
       actions: write # start the publish
+      checks: read # see that Xcode Cloud started
     steps:
       - uses: actions/checkout@v7
         with:
@@ -96,6 +98,22 @@ jobs:
               grep -F "versionName = \"$version\"" "$gradle"
               grep -F "versionCode = $((code + 1))" "$gradle"
               ;;
+            macos)
+              # apple/Config/Versions.xcconfig is the version source of truth, for the app and its widget
+              config=apple/Config/Versions.xcconfig
+              key="MARKETING_VERSION[sdk=macosx*]"
+              version=$(next "$(grep -F "$key = " "$config" | sed 's/.* = //')")
+              sed -i "s/^MARKETING_VERSION\\[sdk=macosx\\*\\] = .*/$key = $version/" "$config"
+              grep -Fx "$key = $version" "$config"
+              ;;
+            ios)
+              # the same file holds the iOS version, once for devices and once for the simulator
+              config=apple/Config/Versions.xcconfig
+              version=$(next "$(grep -F "MARKETING_VERSION[sdk=iphoneos*] = " "$config" | sed 's/.* = //')")
+              sed -i "s/^MARKETING_VERSION\\[sdk=\\(iphoneos\\|iphonesimulator\\)\\*\\] = .*/MARKETING_VERSION[sdk=\\1*] = $version/" "$config"
+              grep -Fx "MARKETING_VERSION[sdk=iphoneos*] = $version" "$config"
+              grep -Fx "MARKETING_VERSION[sdk=iphonesimulator*] = $version" "$config"
+              ;;
           esac
 
           git commit -am "$app v$version"
@@ -109,8 +127,26 @@ jobs:
         run: |
           # branch first, tag second (never --follow-tags): a main that is no longer the tested commit is rejected before the tag exists
           git push origin HEAD:main
+          # Xcode Cloud watches the repository itself, so a token-pushed macos or ios tag starts its build
           git push origin "$tag"
           # a tag pushed with this token doesn't fire on:push, so start this directly
           if [ "$app" = android ]; then
             gh workflow run android-publish.yml --ref main -f tag="$tag"
           fi
+      - name: check that Xcode Cloud started
+        if: inputs.app == 'macos' || inputs.app == 'ios'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          tag: ${{ steps.bump.outputs.tag }}
+        # Xcode Cloud puts a check on a tag's commit when it starts on it; a tag it never saw gets none
+        run: |
+          for _ in $(seq 20); do
+            started=$(gh api "repos/$GITHUB_REPOSITORY/commits/$tag/check-runs" \
+              --jq '[.check_runs[] | select(.app.name == "Xcode Cloud")] | length')
+            if [ "$started" -gt 0 ]; then
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "::error::Xcode Cloud did not start on $tag. Start that build by hand in App Store Connect, from the tag."
+          exit 1

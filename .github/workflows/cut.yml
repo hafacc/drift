@@ -1,5 +1,6 @@
 # Cut a release of every chosen app in one go, each with the same bump. Each app is its own
-# cut-app.yml, one after another on the `cut` lock.
+# cut-app.yml, one after another on the `cut` lock, so their tags land minutes apart: of two
+# tags pushed in the same second, Xcode Cloud can build only the last.
 name: cut
 
 on:
@@ -12,6 +13,14 @@ on:
         default: patch
       android:
         description: Android app
+        type: boolean
+        default: true
+      macos:
+        description: macOS app
+        type: boolean
+        default: true
+      ios:
+        description: iOS app
         type: boolean
         default: true
 
@@ -33,3 +42,38 @@ jobs:
       contents: write # push the bump + tag
       actions: write # start the publish
       pull-requests: read # build.yml asks for it; unused here
+      checks: read # see that Xcode Cloud started
+
+  macos:
+    if: inputs.macos
+    uses: ./.github/workflows/cut-app.yml
+    with:
+      app: macos
+      bump: ${{ inputs.bump }}
+    # one cut at a time across every cut workflow, held from before the tests until the push
+    concurrency:
+      group: cut
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write # push the bump + tag
+      actions: write # start the publish
+      pull-requests: read # build.yml asks for it; unused here
+      checks: read # see that Xcode Cloud started
+
+  ios:
+    if: inputs.ios
+    uses: ./.github/workflows/cut-app.yml
+    with:
+      app: ios
+      bump: ${{ inputs.bump }}
+    # one cut at a time across every cut workflow, held from before the tests until the push
+    concurrency:
+      group: cut
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write # push the bump + tag
+      actions: write # start the publish
+      pull-requests: read # build.yml asks for it; unused here
+      checks: read # see that Xcode Cloud started

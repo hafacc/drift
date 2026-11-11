@@ -25,6 +25,7 @@ jobs:
       pull-requests: read # list the pull request's files
     outputs:
       android: ${{ steps.pick.outputs.android }}
+      apple: ${{ steps.pick.outputs.apple }}
     steps:
       - uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4
         id: touched
@@ -35,13 +36,15 @@ jobs:
               - .github/workflows/**
             android:
               - android/**
+            apple:
+              - apple/**
       - id: pick
         env:
           event: ${{ github.event_name }}
           touched: ${{ steps.touched.outputs.changes }}
           only: ${{ inputs.only }}
         run: |
-          for job in android; do
+          for job in android apple; do
             if [ "$event" = pull_request ]; then
               run=$(jq --arg job "$job" 'any(. == $job or . == "all")' <<< "$touched")
             elif [ -n "$only" ]; then
@@ -69,3 +72,28 @@ jobs:
           java-version: "21" # the daemon JVM, gradle/gradle-daemon-jvm.properties
       - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6
       - run: ./gradlew :app:testDebugUnitTest :app:assembleDebug :app:lintDebug detekt
+
+  apple:
+    needs: changes
+    if: needs.changes.outputs.apple == 'true'
+    runs-on: macos-26
+    defaults:
+      run:
+        working-directory: apple
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
+      - run: brew install xcodegen
+      # Xcode Cloud builds the committed project, so it must be what project.yml generates
+      - name: check the project matches project.yml
+        run: |
+          xcodegen generate
+          if ! git diff --exit-code -- Drift.xcodeproj; then
+            echo "::error::Drift.xcodeproj is out of date: run xcodegen generate in apple/ and commit it."
+            exit 1
+          fi
+      - run: make lint
+      # the team's signing certificate isn't on the runner, and the tests don't need it
+      - run: xcodebuild test -project Drift.xcodeproj -scheme Drift -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO
+      - run: xcodebuild test -project Drift.xcodeproj -scheme DriftiOS -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO
