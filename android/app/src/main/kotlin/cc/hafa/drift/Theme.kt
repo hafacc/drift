@@ -62,13 +62,7 @@ fun accentColors(scheme: ColorScheme, powerOn: Boolean, mode: OperationalMode): 
             container = scheme.surfaceContainerHighest,
             onContainer = scheme.onSurface,
         )
-        hue == null -> AccentColors(
-            fill = scheme.primary,
-            onFill = scheme.onPrimary,
-            text = scheme.primary,
-            container = scheme.primaryContainer,
-            onContainer = scheme.onPrimaryContainer,
-        )
+        hue == null -> themeAccentColors(scheme)
         else -> AccentColors(
             fill = scheme.primary.towardHue(hue),
             onFill = scheme.onPrimary.towardHue(hue),
@@ -78,6 +72,21 @@ fun accentColors(scheme: ColorScheme, powerOn: Boolean, mode: OperationalMode): 
         )
     }
 }
+
+/** The scheme's own primary roles, for controls that don't follow the unit's mode. */
+@Composable
+fun themeAccentColors(): AccentColors {
+    val scheme = MaterialTheme.colorScheme
+    return remember(scheme) { themeAccentColors(scheme) }
+}
+
+fun themeAccentColors(scheme: ColorScheme): AccentColors = AccentColors(
+    fill = scheme.primary,
+    onFill = scheme.onPrimary,
+    text = scheme.primary,
+    container = scheme.primaryContainer,
+    onContainer = scheme.onPrimaryContainer,
+)
 
 // Hue (degrees) each mode leans toward; null for a mode without a name.
 private val OperationalMode.hue: Float?
