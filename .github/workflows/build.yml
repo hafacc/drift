@@ -4,118 +4,49 @@ on:
   push:
     branches: [main]
   pull_request:
-  workflow_call:
-    inputs:
-      only:
-        description: jobs to run, space separated; all of them when empty
-        type: string
-        default: ""
-      ref:
-        description: commit to build; the caller's own when empty
-        type: string
-        default: ""
 
 jobs:
-  # which of the jobs below run: on a pull request or a push those whose folder it
-  # touches (all of them when it touches this file), the caller's `only` when called,
-  # and otherwise all
+  # which of the jobs below run: those whose folder or workflow the change touches, and all of
+  # them when it touches this file
   changes:
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: read # list the pull request's files
+      contents: read # a push is compared with git
+      pull-requests: read # a pull request's files are listed through the API
     outputs:
-      site: ${{ steps.pick.outputs.site }}
-      android: ${{ steps.pick.outputs.android }}
-      apple: ${{ steps.pick.outputs.apple }}
+      site: ${{ steps.touched.outputs.site == 'true' || steps.touched.outputs.all == 'true' }}
+      android: ${{ steps.touched.outputs.android == 'true' || steps.touched.outputs.all == 'true' }}
+      apple: ${{ steps.touched.outputs.apple == 'true' || steps.touched.outputs.all == 'true' }}
     steps:
-      # a push is compared with git, a pull request through the API
       - uses: actions/checkout@v7
         if: github.event_name == 'push'
       - uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4
         id: touched
-        if: github.event_name == 'pull_request' || github.event_name == 'push'
         with:
           filters: |
             all:
               - .github/workflows/build.yml
             site:
               - site/**
+              - .github/workflows/site.yml
             android:
               - android/**
+              - .github/workflows/android.yml
             apple:
               - apple/**
-      - id: pick
-        env:
-          event: ${{ github.event_name }}
-          touched: ${{ steps.touched.outputs.changes }}
-          only: ${{ inputs.only }}
-        run: |
-          for job in site android apple; do
-            if [ "$event" = pull_request ] || [ "$event" = push ]; then
-              run=$(jq --arg job "$job" 'any(. == $job or . == "all")' <<< "$touched")
-            elif [ -n "$only" ]; then
-              case " $only " in *" $job "*) run=true ;; *) run=false ;; esac
-            else
-              run=true
-            fi
-            echo "$job=$run" >> "$GITHUB_OUTPUT"
-          done
+              - .github/workflows/apple.yml
 
   site:
     needs: changes
     if: needs.changes.outputs.site == 'true'
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: site
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          ref: ${{ inputs.ref }}
-      - uses: oven-sh/setup-bun@v2
-      - run: bun install --frozen-lockfile
-      - run: bun lint
-      - run: bun export
+    uses: ./.github/workflows/site.yml
 
   android:
     needs: changes
     if: needs.changes.outputs.android == 'true'
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: android
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          ref: ${{ inputs.ref }}
-      - uses: actions/setup-java@v6
-        with:
-          distribution: temurin
-          java-version: "21" # the daemon JVM, gradle/gradle-daemon-jvm.properties
-      - uses: gradle/actions/setup-gradle@8da46b539cd8fe6ab27ca75128919a18d757604c # v6
-      - run: ./gradlew :app:testDebugUnitTest :app:assembleDebug :app:lintDebug detekt
+    uses: ./.github/workflows/android.yml
 
   apple:
     needs: changes
     if: needs.changes.outputs.apple == 'true'
-    runs-on: macos-26
-    defaults:
-      run:
-        working-directory: apple
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          ref: ${{ inputs.ref }}
-      - run: brew install xcodegen
-      # Xcode Cloud builds the committed project, so it must be what project.yml generates
-      - name: check the project matches project.yml
-        run: |
-          xcodegen generate
-          if ! git diff --exit-code -- Drift.xcodeproj; then
-            echo "::error::Drift.xcodeproj is out of date: run xcodegen generate in apple/ and commit it."
-            exit 1
-          fi
-      - run: make lint
-      # the team's signing certificate isn't on the runner, and the tests don't need it
-      - run: xcodebuild test -project Drift.xcodeproj -scheme Drift -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO
-      - run: xcodebuild test -project Drift.xcodeproj -scheme DriftiOS -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO
+    uses: ./.github/workflows/apple.yml

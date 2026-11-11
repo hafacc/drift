@@ -39,7 +39,6 @@ jobs:
     permissions:
       contents: write # push the bump and tag
       actions: write # start the publish
-      pull-requests: read # build.yml asks for it; unused here
 
   macos:
     if: inputs.macos
@@ -49,7 +48,6 @@ jobs:
     permissions:
       contents: write # push the bump and tag
       checks: read # see that Xcode Cloud started
-      pull-requests: read # build.yml asks for it; unused here
 
   ios:
     if: inputs.ios
@@ -59,7 +57,6 @@ jobs:
     permissions:
       contents: write # push the bump and tag
       checks: read # see that Xcode Cloud started
-      pull-requests: read # build.yml asks for it; unused here
 
   web:
     if: inputs.web

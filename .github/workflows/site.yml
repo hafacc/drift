@@ -1,0 +1,28 @@
+# Lint and build the site. Run by build.yml when a change touches site/.
+name: site
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: commit to test; the caller's own when empty
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun lint
+      - run: bun export

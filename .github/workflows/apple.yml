@@ -1,0 +1,45 @@
+# Test and build the macOS and iOS apps. Run by build.yml when a change touches apple/, and
+# by macos-cut.yml and ios-cut.yml before they release.
+name: apple
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: commit to test; the caller's own when empty
+        type: string
+        default: ""
+    outputs:
+      sha:
+        description: the commit tested
+        value: ${{ jobs.apple.outputs.sha }}
+
+permissions:
+  contents: read
+
+jobs:
+  apple:
+    outputs:
+      sha: ${{ steps.checkout.outputs.commit }}
+    runs-on: macos-26
+    defaults:
+      run:
+        working-directory: apple
+    steps:
+      - uses: actions/checkout@v7
+        id: checkout
+        with:
+          ref: ${{ inputs.ref }}
+      - run: brew install xcodegen
+      # Xcode Cloud builds the committed project, so it must be what project.yml generates
+      - name: check the project matches project.yml
+        run: |
+          xcodegen generate
+          if ! git diff --exit-code -- Drift.xcodeproj; then
+            echo "::error::Drift.xcodeproj is out of date: run xcodegen generate in apple/ and commit it."
+            exit 1
+          fi
+      - run: make lint
+      # the team's signing certificate isn't on the runner, and the tests don't need it
+      - run: xcodebuild test -project Drift.xcodeproj -scheme Drift -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO
+      - run: xcodebuild test -project Drift.xcodeproj -scheme DriftiOS -destination 'platform=iOS Simulator,name=iPhone 17' CODE_SIGNING_ALLOWED=NO
