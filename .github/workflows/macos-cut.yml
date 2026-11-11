@@ -1,0 +1,30 @@
+# Cut a release of the macOS app: bump its version and tag it. Xcode Cloud builds from the tag.
+name: macos-cut
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: semver bump
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+
+permissions: {}
+
+jobs:
+  cut:
+    uses: ./.github/workflows/cut-app.yml
+    with:
+      app: macos
+      bump: ${{ inputs.bump }}
+    # one cut at a time across every cut workflow, held from before the tests until the push
+    concurrency:
+      group: cut
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write # push the bump + tag
+      actions: write # start the publish
+      pull-requests: read # build.yml asks for it; unused here
+      checks: read # see that Xcode Cloud started

@@ -1,0 +1,15 @@
+{
+  "originHash" : "6ecc779c58df1667183f1585bdd7724d6ad562b5a6c9ec02330539821ec1a74b",
+  "pins" : [
+    {
+      "identity" : "mideakit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hafacc/MideaKit",
+      "state" : {
+        "revision" : "4c0ef72f94611508d3138f77bc283caac9d612e7",
+        "version" : "0.5.1"
+      }
+    }
+  ],
+  "version" : 3
+}

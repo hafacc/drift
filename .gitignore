@@ -4,6 +4,14 @@ secrets.json
 *.secret.json
 .env
 
+# Swift / Xcode
+.build/
+.swiftpm/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+
 # Android / Gradle
 android/**/build/
 android/.gradle/

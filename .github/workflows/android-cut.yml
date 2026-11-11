@@ -28,3 +28,4 @@ jobs:
       contents: write # push the bump + tag
       actions: write # start the publish
       pull-requests: read # build.yml asks for it; unused here
+      checks: read # see that Xcode Cloud started
