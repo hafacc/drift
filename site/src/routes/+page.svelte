@@ -76,14 +76,19 @@
       </p>
     </div>
     <div class="stores">
-      <a class="store" href={playStoreUrl}>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M4 2.8v18.4c0 .5.5.8.9.6l16-9.2c.4-.2.4-.9 0-1.1L4.9 2.2c-.4-.2-.9.1-.9.6z"
-          />
-        </svg>
-        Android
-      </a>
+      {#if !playStoreUrl && !appStoreUrl}
+        <p class="soon">Coming soon</p>
+      {/if}
+      {#if playStoreUrl}
+        <a class="store" href={playStoreUrl}>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M4 2.8v18.4c0 .5.5.8.9.6l16-9.2c.4-.2.4-.9 0-1.1L4.9 2.2c-.4-.2-.9.1-.9.6z"
+            />
+          </svg>
+          Android
+        </a>
+      {/if}
       {#if appStoreUrl}
         <a class="store" href={appStoreUrl}>
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -207,6 +212,15 @@
     font-size: 15px;
     font-weight: 500;
     text-decoration: none;
+  }
+  .soon {
+    margin: 0;
+    padding: 12px 20px;
+    border: 1px solid var(--muted);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 500;
   }
   .store svg {
     width: 20px;
