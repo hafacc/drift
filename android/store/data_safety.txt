@@ -1,0 +1,14 @@
+Play Console data safety answers
+
+Does your app collect or share any of the required user data types? Yes
+Is all of the user data collected by your app encrypted in transit? Yes
+Which of the following methods of account creation does your app support? None (the
+Midea sign-in is Midea's account, used once during setup to fetch the AC's key)
+
+Data types: Personal info > Email address
+  Collected: yes. Shared: no (sent only to Midea, when the user signs in to Midea).
+  Processed ephemerally: yes (held in memory during setup, never stored).
+  Required or optional: required.
+  Purpose: App functionality.
+
+Nothing else is collected: the AC's key and address stay on the phone.

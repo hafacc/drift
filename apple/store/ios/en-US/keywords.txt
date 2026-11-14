@@ -1,0 +1,1 @@
+air conditioner,ac,remote,thermostat,climate,cooling,heater,fan,wifi,lan,local,privacy,widget

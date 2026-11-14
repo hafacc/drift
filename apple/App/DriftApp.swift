@@ -12,6 +12,46 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     true
   }
 
+  #if DEBUG
+    /// For store screenshots: with `-DriftScreenshotFile YES`, writes the window as a
+    /// base64 PNG to standard output once it has drawn; the app is sandboxed, and an app
+    /// may capture its own windows without screen recording access.
+    func applicationDidFinishLaunching(_ notification: Notification) {
+      guard UserDefaults.standard.bool(forKey: "DriftScreenshotFile") else { return }
+      DispatchQueue.main.asyncAfter(deadline: .now() + 2) { self.showWindow() }
+      Task {
+        do {
+          try await Self.captureWindow()
+        } catch {
+          print("DRIFT-SCREENSHOT-ERROR \(error)")
+        }
+      }
+    }
+
+    private static func captureWindow() async throws {
+      try await Task.sleep(for: .seconds(4))
+      let number = await MainActor.run {
+        NSApp.windows.first(where: \.isVisible)?.windowNumber ?? 0
+      }
+      // CGWindowListCreateImage is gone from the SDK but still answers for an app's own
+      // windows without screen recording access, which ScreenCaptureKit doesn't.
+      typealias CreateImage =
+        @convention(c) (CGRect, UInt32, UInt32, UInt32) -> Unmanaged<CGImage>?
+      guard let symbol = dlsym(UnsafeMutableRawPointer(bitPattern: -2), "CGWindowListCreateImage"),
+        let image = unsafeBitCast(symbol, to: CreateImage.self)(
+          .null, CGWindowListOption.optionIncludingWindow.rawValue, UInt32(number),
+          CGWindowImageOption.bestResolution.rawValue)?.takeRetainedValue()
+      else {
+        print("DRIFT-SCREENSHOT-ERROR no image")
+        return
+      }
+      if let png = NSBitmapImageRep(cgImage: image).representation(using: .png, properties: [:]) {
+        print("DRIFT-SCREENSHOT " + png.base64EncodedString())
+        fflush(stdout)
+      }
+    }
+  #endif
+
   func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows: Bool) -> Bool {
     showWindow()
     return true

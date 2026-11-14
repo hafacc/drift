@@ -101,7 +101,10 @@
       {/if}
     </div>
   </main>
-  <footer><a href="/privacy">Privacy</a></footer>
+  <footer>
+    <a href="/support">Support</a>
+    <a href="/privacy">Privacy</a>
+  </footer>
 </div>
 
 <style>
@@ -233,6 +236,8 @@
     outline-offset: 3px;
   }
   footer {
+    display: flex;
+    gap: 20px;
     margin-top: auto;
     font-size: 14px;
     color: var(--muted);

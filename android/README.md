@@ -37,6 +37,16 @@ exercise the protocol headlessly against a real device.
 The Quick Settings tile (`DriftTileService`) and Glance home widget (`DriftWidget`)
 both ship. Credentials are stored with `EncryptedSharedPreferences`.
 
+## Store listing (Google Play)
+
+`app/src/main/play/` holds the Play listing: the title, descriptions, icon, feature
+graphic and phone screenshots, uploaded by hand in the Play Console. `tools/makeflaticon.swift` writes the icon and `tools/makefeaturegraphic.swift`
+the feature graphic. For screenshots, put raw captures in `store/captures` under the names
+in its `captions.txt` and run `swift tools/framescreenshots.swift android` from the
+repository root; the raw captures aren't committed. A debug build started with
+`adb shell am start -n cc.hafa.drift/.MainActivity --es drift.screenshot cool` shows a
+fixed reading with no AC.
+
 ## Releases (Google Play)
 `.github/workflows/android-cut.yml` (run by hand with patch/minor/major, or `cut.yml` for
 every app) runs the Android job of `build.yml` on main's tip, bumps `versionName` and

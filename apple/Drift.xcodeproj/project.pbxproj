@@ -54,8 +54,10 @@
 		B5F450F0DA1DECD271552F3F /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140184EA9160B065E662C929 /* SetupFlow.swift */; };
 		B6287EB06EFF4B0558105374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73185B3EF9DCC449C0F66E38 /* Assets.xcassets */; platformFilters = (macos, ); };
 		BE227FA7168B30B25194637B /* SingleFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D78538EB340A5115879AEB8 /* SingleFlight.swift */; };
+		BE4DE5F28E3640B5B143AF7A /* ProjectLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD69A5ED8962220D2094193 /* ProjectLinks.swift */; };
 		BE65E04ECBD04DEC59F8F792 /* DeviceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF31FF13AA4C03D9121B07E5 /* DeviceSearch.swift */; };
 		BF2D4E43C60F9309E79A89D1 /* DeviceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF31FF13AA4C03D9121B07E5 /* DeviceSearch.swift */; };
+		C321A581D4E0E42C776AFCC5 /* ProjectLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD69A5ED8962220D2094193 /* ProjectLinks.swift */; };
 		C71842D7DDC667CDC8E62A6C /* HomeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19A3FCE510233987A0FB485 /* HomeWidget.swift */; platformFilters = (ios, ); };
 		CAB703E8A1EBECD036FFB21E /* SetupFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140184EA9160B065E662C929 /* SetupFlow.swift */; };
 		E01C3A6D389E81E7B0E27D10 /* WidgetActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1E1175BC114FFF71DC0E7C /* WidgetActions.swift */; };
@@ -105,6 +107,7 @@
 		622C5D512658641BA0B5F6C7 /* DeviceSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSearchTests.swift; sourceTree = "<group>"; };
 		64B60D0427F47ACCC56992C1 /* TemperatureDial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureDial.swift; sourceTree = "<group>"; };
 		668D8D5951EB119A1624DDB2 /* DriftTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DriftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BD69A5ED8962220D2094193 /* ProjectLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectLinks.swift; sourceTree = "<group>"; };
 		6C08CCB9880609608E244900 /* Versions.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Versions.xcconfig; sourceTree = "<group>"; };
 		7141E70FF712CF8DB87B8A07 /* DriftWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftWidget.swift; sourceTree = "<group>"; };
 		7218DE3B83A5B92EB4A7E574 /* PowerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerControl.swift; sourceTree = "<group>"; };
@@ -257,6 +260,7 @@
 			children = (
 				4E42DD325D5A314F6B410019 /* DeviceStore.swift */,
 				55AA1EF84824DFDE34CBDD87 /* PrivacyPolicy.swift */,
+				6BD69A5ED8962220D2094193 /* ProjectLinks.swift */,
 				140184EA9160B065E662C929 /* SetupFlow.swift */,
 				9A93CF943A2894E65CC6A1F6 /* SetupNetwork.swift */,
 			);
@@ -444,6 +448,7 @@
 				A4AD197209BB26B07C72F989 /* Keychain.swift in Sources */,
 				A80B78330BA04AC026FB2F01 /* PrivacyPolicy.swift in Sources */,
 				127C57FE55233319ABA90733 /* PrivacySheet.swift in Sources */,
+				BE4DE5F28E3640B5B143AF7A /* ProjectLinks.swift in Sources */,
 				CAB703E8A1EBECD036FFB21E /* SetupFlow.swift in Sources */,
 				589D5E20A863CF25D021A56A /* SetupNetwork.swift in Sources */,
 				89DAB16E0332F0D709DCA237 /* SetupView.swift in Sources */,
@@ -487,6 +492,7 @@
 				51B42B148AE625FB948A62BA /* FilterReset.swift in Sources */,
 				FC71B748C56044CDCDF17162 /* Keychain.swift in Sources */,
 				ED9D7DCE2C1F7542CB684CD9 /* PrivacyPolicy.swift in Sources */,
+				C321A581D4E0E42C776AFCC5 /* ProjectLinks.swift in Sources */,
 				B5F450F0DA1DECD271552F3F /* SetupFlow.swift in Sources */,
 				B5423154EFF0125E4FC512E2 /* SetupNetwork.swift in Sources */,
 				B3D9E6A42BC011B500B46BCB /* SetupRetryTests.swift in Sources */,

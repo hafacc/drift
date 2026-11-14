@@ -76,6 +76,20 @@ platform's lines, commit and tag `macos-v<version>` or `ios-v<version>`. Xcode C
 builds the archive from the tag, so it uses the committed `Drift.xcodeproj`: regenerate and commit it after
 every `project.yml` change (`build.yml` fails when the two differ).
 
+## App Store listing
+
+`store/` holds the App Store Connect listing for the one universal app: `en-US/` the
+fields shared by iPhone and Mac (name, subtitle, URLs), `ios/` and `macos/` each
+platform's description, keywords and promotional text, `review_notes.txt` the App Review
+notes, and `screenshots/` the framed screenshots. Nothing uploads them; paste them in.
+
+Screenshots: a debug build launched with `-DriftScreenshot cool` (or heat, dry, fan, auto)
+shows a fixed reading with no AC; on the Mac, adding `-DriftScreenshotFile YES` writes its
+window to standard output as a base64 PNG (`open -n --stdout <file> Drift.app --args …`).
+Put raw captures (iPhone at 1206x2622 or 1179x2556; Mac window captures) in `store/captures/iphone` or `store/captures/mac` under the names in
+that folder's `captions.txt`, then run `swift tools/framescreenshots.swift iphone` (or
+`mac`) from the repository root. The raw captures aren't committed.
+
 ## MideaKit on its own
 
 The protocol library is the standalone
@@ -87,3 +101,7 @@ cd MideaKit         # a checkout of hafacc/MideaKit
 swift test          # protocol unit tests
 swift run mideacli  # read/control the AC from the command line
 ```
+
+Review video: `tools/recorddemo.sh` records the iPhone simulator while a debug build
+launched with `-DriftDemo YES` turns the AC on, changes the mode and temperature, and
+turns it off.
