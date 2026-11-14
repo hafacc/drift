@@ -1,0 +1,2 @@
+control.png: Your AC, straight over your Wi-Fi
+auto.png: Every mode, fan speed and setting

@@ -5,6 +5,7 @@ import SwiftUI
 struct ControlView: View {
   @Environment(DeviceStore.self) private var store
   @Environment(\.scenePhase) private var scenePhase
+  @Environment(\.openURL) private var openURL
   @State private var nickname = ""
   @State private var renaming = false
   @State private var confirmingForget = false
@@ -263,7 +264,8 @@ struct ControlView: View {
     .frame(maxWidth: .infinity, minHeight: 360)
   }
 
-  /// Whether the AC beeps at each command, renaming it, the privacy policy, and forgetting it.
+  /// Whether the AC beeps at each command, renaming it, the privacy policy, feedback, the source code, and
+  /// forgetting it.
   private var deviceOptions: some View {
     VStack(spacing: 0) {
       Toggle("Beep", isOn: Binding(get: { store.beepEnabled }, set: { store.setBeep($0) }))
@@ -279,6 +281,12 @@ struct ControlView: View {
       Divider()
         .padding(.leading, 16)
       optionRow("Privacy") { showingPrivacy = true }
+      Divider()
+        .padding(.leading, 16)
+      optionRow("Feedback") { openURL(ProjectLinks.feedback) }
+      Divider()
+        .padding(.leading, 16)
+      optionRow("Source Code") { openURL(ProjectLinks.source) }
       Divider()
         .padding(.leading, 16)
       optionRow("Forget This AC", role: .destructive) { confirmingForget = true }

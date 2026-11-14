@@ -58,3 +58,28 @@ drawForeground()
 preview.unlockFocus()
 writePNG(preview, "/tmp/flat_preview.png")
 print("wrote /tmp/flat_foreground.png and /tmp/flat_preview.png")
+
+// Play Store icon: the launcher's visible area (the inner 72dp of the 108dp canvas)
+// on a full square, which Play rounds itself, at Play's 512px.
+let playSize: CGFloat = 512
+let visible: CGFloat = S * 72.0 / 108.0
+let playRep = NSBitmapImageRep(
+    bitmapDataPlanes: nil, pixelsWide: Int(playSize), pixelsHigh: Int(playSize), bitsPerSample: 8,
+    samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
+    colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0)!
+NSGraphicsContext.saveGraphicsState()
+NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: playRep)
+color(0.22, 0.45, 0.90).setFill()
+NSRect(x: 0, y: 0, width: playSize, height: playSize).fill()
+let transform = NSAffineTransform()
+transform.scale(by: playSize / visible)
+transform.translateX(by: -(S - visible) / 2, yBy: -(S - visible) / 2)
+transform.concat()
+drawForeground()
+NSGraphicsContext.restoreGraphicsState()
+let playPath = URL(fileURLWithPath: #filePath)
+    .deletingLastPathComponent()
+    .appendingPathComponent("../app/src/main/play/listings/en-US/graphics/icon/icon.png")
+    .standardized.path
+try! playRep.representation(using: .png, properties: [:])!.write(to: URL(fileURLWithPath: playPath))
+print("wrote \(playPath)")

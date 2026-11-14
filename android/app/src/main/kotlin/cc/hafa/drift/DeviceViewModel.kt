@@ -6,7 +6,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import io.hafa.mideakt.ACState
 import io.hafa.mideakt.DeviceCredentials
+import io.hafa.mideakt.FanSpeed
+import io.hafa.mideakt.OperationalMode
 import io.hafa.mideakt.SetState
+import io.hafa.mideakt.SwingMode
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -92,6 +95,45 @@ class DeviceViewModel(application: Application) : AndroidViewModel(application) 
      *  self-correction until something explicitly asks again. */
     fun refreshWifiStatus() {
         _ui.update { it.copy(wifiAvailable = devices.isWifiAvailableNow()) }
+    }
+
+    /** Show a fixed reading in [modeName] (cool, heat, dry, fan or auto) with no AC and no
+     *  connection, for store screenshots; debug builds only. */
+    fun showScreenshotReading(modeName: String) {
+        data class Reading(val mode: OperationalMode, val target: Double, val indoor: Double, val outdoor: Double)
+        val readings = mapOf(
+            "cool" to Reading(OperationalMode.COOL, 24.0, 27.0, 33.0),
+            "heat" to Reading(OperationalMode.HEAT, 21.0, 18.0, 4.0),
+            "dry" to Reading(OperationalMode.DRY, 25.0, 26.0, 24.0),
+            "fan" to Reading(OperationalMode.FAN_ONLY, 24.0, 25.0, 22.0),
+            "auto" to Reading(OperationalMode.AUTO, 23.0, 25.0, 28.0),
+        )
+        val reading = readings[modeName] ?: readings.getValue("cool")
+        _ui.update {
+            it.copy(
+                needsSetup = false,
+                nickname = "Living Room",
+                connection = Connection.Connected,
+                state = ACState(
+                    powerOn = true,
+                    targetTemperature = reading.target,
+                    mode = reading.mode,
+                    fanSpeed = FanSpeed.AUTO,
+                    indoorTemperature = reading.indoor,
+                    outdoorTemperature = reading.outdoor,
+                    swingMode = SwingMode.OFF,
+                    eco = false,
+                    turbo = false,
+                    sleep = false,
+                    fahrenheit = false,
+                    purifier = false,
+                    displayOn = true,
+                    filterAlert = false,
+                    freezeProtection = false,
+                    targetHumidity = null,
+                ),
+            )
+        }
     }
 
     /** Poll while the app is in the foreground; release the connection otherwise. */
