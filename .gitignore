@@ -24,3 +24,7 @@ local.properties
 *.jks
 *.keystore
 keystore.properties
+
+# Raw screenshots for the store listings; only their captions are kept
+apple/store/captures/**/*.png
+android/store/captures/*.png

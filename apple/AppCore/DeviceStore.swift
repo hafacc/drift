@@ -218,6 +218,16 @@ final class DeviceStore {
     snapshot = SharedStore.loadSnapshot()
     needsSetup = device == nil
     if let device { session = ClientSession(credentials: device.credentials) }
+    #if DEBUG
+      // For store screenshots: `-DriftScreenshot cool` (or heat, dry, fan, auto) shows a
+      // fixed reading in that mode, with no AC and no connection.
+      if let screenshotMode = UserDefaults.standard.string(forKey: "DriftScreenshot") {
+        showScreenshotReading(screenshotMode)
+      }
+      // For the App Review video: `-DriftDemo YES` turns the AC on, changes the mode and
+      // temperature, then turns it off, a few seconds apart.
+      if UserDefaults.standard.bool(forKey: "DriftDemo") { runDemo() }
+    #endif
     localNetworkMonitor.pathUpdateHandler = { [weak self] path in
       // Not the default route's interface: on Wi-Fi without internet, iOS routes the
       // default over cellular while the AC is still reachable on the Wi-Fi.
@@ -393,6 +403,49 @@ final class DeviceStore {
     setupPhase = .idle
     WidgetReload.all()
   }
+
+  #if DEBUG
+    private func runDemo() {
+      Task { [weak self] in
+        let pause = Duration.seconds(6)
+        while self?.lastState == nil { try? await Task.sleep(for: .seconds(1)) }
+        try? await Task.sleep(for: pause)
+        self?.setPower(true)
+        try? await Task.sleep(for: pause)
+        self?.setMode(.cool)
+        try? await Task.sleep(for: pause)
+        self?.setMode(.fanOnly)
+        try? await Task.sleep(for: pause)
+        self?.setMode(.cool)
+        try? await Task.sleep(for: pause)
+        self?.adjustTemperature(-2)
+        try? await Task.sleep(for: pause)
+        self?.adjustTemperature(2)
+        try? await Task.sleep(for: pause)
+        self?.setPower(false)
+      }
+    }
+
+    private func showScreenshotReading(_ modeName: String) {
+      // mode, target, room and outdoor temperatures
+      let readings: [String: (OperationalMode, Double, Double, Double)] = [
+        "cool": (.cool, 24, 27, 33), "heat": (.heat, 21, 18, 4), "dry": (.dry, 25, 26, 24),
+        "fan": (.fanOnly, 24, 25, 22), "auto": (.auto, 23, 25, 28),
+      ]
+      let (mode, target, indoor, outdoor) = readings[modeName] ?? readings["cool"]!
+      device = StoredDevice(
+        credentials: DeviceCredentials(
+          name: "Living Room", id: 0, ip: "", port: 0, version: 3, token: [], key: [],
+          serialNumber: nil),
+        nickname: "Living Room")
+      session = nil
+      needsSetup = false
+      connection = .connected
+      snapshot = Snapshot(
+        deviceName: "Living Room", powerOn: true, mode: mode, targetTemperature: target,
+        indoorTemperature: indoor, outdoorTemperature: outdoor, fanSpeed: .auto)
+    }
+  #endif
 
   // MARK: Polling & control
 

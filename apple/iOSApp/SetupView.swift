@@ -74,7 +74,13 @@ struct SetupView: View {
       .navigationTitle("Set Up Drift")
       .toolbar {
         ToolbarItem(placement: .topBarTrailing) {
-          Button("Privacy") { showingPrivacy = true }
+          Menu {
+            Button("Privacy") { showingPrivacy = true }
+            Link("Feedback", destination: ProjectLinks.feedback)
+            Link("Source Code", destination: ProjectLinks.source)
+          } label: {
+            Label("More", systemImage: "ellipsis")
+          }
         }
       }
       .sheet(isPresented: $showingPrivacy) { PrivacySheet() }

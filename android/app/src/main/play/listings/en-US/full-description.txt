@@ -1,0 +1,13 @@
+Drift controls your Midea air conditioner directly over your Wi-Fi network, with no cloud in between.
+
+Set it up once: Drift finds your air conditioner on your network and fetches its key from your Midea account a single time. After that, every command goes straight from your phone to the air conditioner. Nothing passes through Midea's servers, and Drift collects no data: no accounts, ads, analytics or tracking.
+
+• Power, target temperature and mode: cool, heat, dry, fan and auto
+• Fan speed, swing, eco, turbo, display light and beep
+• Room and outdoor temperature
+• A reminder when the filter needs cleaning
+• A Quick Settings tile and a home screen widget
+
+Requires a Midea Wi-Fi air conditioner that's already added to a Midea account, on the same Wi-Fi network as your phone.
+
+Drift isn't made by or affiliated with Midea.

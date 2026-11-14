@@ -197,7 +197,7 @@ private fun SetupScreen(ui: UiState, setup: SetupState, actions: SetupActions) {
                 textAlign = TextAlign.Center,
             )
             SetupPanel(setup, ui.wifiAvailable, actions)
-            PrivacyButton()
+            FooterLinks()
         }
     }
 }
@@ -461,7 +461,7 @@ private fun ControlContent(ui: UiState, state: ACState, actions: ControlActions,
     }
 }
 
-/** Whether the AC beeps at each command, forgetting the device, and the privacy policy. */
+/** Whether the AC beeps at each command, forgetting the device, and the footer links. */
 @Composable
 private fun DeviceOptions(beepEnabled: Boolean, actions: ControlActions) {
     var confirmingForget by rememberSaveable { mutableStateOf(false) }
@@ -481,7 +481,7 @@ private fun DeviceOptions(beepEnabled: Boolean, actions: ControlActions) {
         ) {
             Text("Forget device")
         }
-        PrivacyButton(modifier = Modifier.align(Alignment.CenterHorizontally))
+        FooterLinks(modifier = Modifier.align(Alignment.CenterHorizontally))
     }
     if (confirmingForget) {
         AlertDialog(

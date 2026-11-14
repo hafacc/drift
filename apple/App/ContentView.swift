@@ -31,11 +31,16 @@ struct ContentView: View {
     }
   }
 
-  private var privacyButton: some View {
-    Button("Privacy") { showingPrivacy = true }
-      .buttonStyle(.borderless)
-      .foregroundStyle(.secondary)
-      .font(.caption)
+  /// The privacy policy, feedback and source code links.
+  private var footerLinks: some View {
+    HStack(spacing: 16) {
+      Button("Privacy") { showingPrivacy = true }
+      Link("Feedback", destination: ProjectLinks.feedback)
+      Link("Source Code", destination: ProjectLinks.source)
+    }
+    .buttonStyle(.borderless)
+    .foregroundStyle(.secondary)
+    .font(.caption)
   }
 
   private var setupView: some View {
@@ -53,7 +58,7 @@ struct ContentView: View {
       accountFields
         .disabled(store.setupPhase.isRunning)
       setupStatus
-      privacyButton
+      footerLinks
     }
     .padding(28)
     .frame(width: windowWidth)
@@ -272,7 +277,7 @@ struct ContentView: View {
     .accessibilityHint("Rename")
   }
 
-  /// Whether the AC beeps at each command, forgetting the device, and the privacy policy.
+  /// Whether the AC beeps at each command, forgetting the device, and the footer links.
   private var deviceOptions: some View {
     VStack(spacing: 12) {
       Divider()
@@ -290,7 +295,7 @@ struct ContentView: View {
         } message: {
           Text("Drift deletes its key. Setting it up again needs your Midea account.")
         }
-      privacyButton
+      footerLinks
     }
   }
 

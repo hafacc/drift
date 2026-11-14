@@ -1,5 +1,6 @@
 package cc.hafa.drift
 
+import android.content.pm.ApplicationInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,7 +14,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             DriftTheme {
-                DriftApp(viewModel())
+                val model: DeviceViewModel = viewModel()
+                // For store screenshots: `--es drift.screenshot cool` (or heat, dry, fan,
+                // auto) shows a fixed reading; debug builds only.
+                val screenshotMode = intent.getStringExtra("drift.screenshot")
+                if (screenshotMode != null && applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0) {
+                    model.showScreenshotReading(screenshotMode)
+                }
+                DriftApp(model)
             }
         }
     }

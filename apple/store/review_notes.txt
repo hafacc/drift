@@ -1,0 +1,7 @@
+Drift controls a Midea Wi-Fi air conditioner directly over the local network, so it needs a Midea air conditioner on the same Wi-Fi network as the device under review. Without one, setup can't find a device and the control screen can't be reached.
+
+The attached video shows the app (left) turning a real air conditioner on, changing its mode and temperature, and turning it off (right).
+
+During setup the app signs in to the user's own Midea account, once, to fetch the air conditioner's local key; the email and password go only to Midea and are never stored. After setup the app talks only to the air conditioner over the local network. It asks for local network access to find and reach the air conditioner.
+
+The app has no accounts, ads, analytics or in-app purchases.
