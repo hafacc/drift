@@ -76,6 +76,7 @@ struct SetupView: View {
         ToolbarItem(placement: .topBarTrailing) {
           Menu {
             Button("Privacy") { showingPrivacy = true }
+            Link("Support", destination: ProjectLinks.support)
             Link("Feedback", destination: ProjectLinks.feedback)
             Link("Source Code", destination: ProjectLinks.source)
           } label: {

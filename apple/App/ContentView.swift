@@ -31,10 +31,11 @@ struct ContentView: View {
     }
   }
 
-  /// The privacy policy, feedback and source code links.
+  /// The privacy policy, support, feedback and source code links.
   private var footerLinks: some View {
     HStack(spacing: 16) {
       Button("Privacy") { showingPrivacy = true }
+      Link("Support", destination: ProjectLinks.support)
       Link("Feedback", destination: ProjectLinks.feedback)
       Link("Source Code", destination: ProjectLinks.source)
     }
