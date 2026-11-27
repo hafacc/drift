@@ -264,7 +264,7 @@ struct ControlView: View {
     .frame(maxWidth: .infinity, minHeight: 360)
   }
 
-  /// Whether the AC beeps at each command, renaming it, the privacy policy, feedback, the source code, and
+  /// Whether the AC beeps at each command, renaming it, the privacy policy, support, feedback, the source code, and
   /// forgetting it.
   private var deviceOptions: some View {
     VStack(spacing: 0) {
@@ -281,6 +281,9 @@ struct ControlView: View {
       Divider()
         .padding(.leading, 16)
       optionRow("Privacy") { showingPrivacy = true }
+      Divider()
+        .padding(.leading, 16)
+      optionRow("Support") { openURL(ProjectLinks.support) }
       Divider()
         .padding(.leading, 16)
       optionRow("Feedback") { openURL(ProjectLinks.feedback) }

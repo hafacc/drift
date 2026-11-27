@@ -2,7 +2,7 @@ package cc.hafa.drift
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
@@ -38,20 +38,24 @@ private val privacySections = listOf(
     "Contact" to "support@drift.hafa.cc",
 )
 
+/** Drift's support page, for help using it. */
+internal const val SUPPORT_URL = "https://drift.hafa.cc/support"
+
 /** A new issue on GitHub, for bugs and ideas. */
 internal const val FEEDBACK_URL = "https://github.com/hafacc/drift/issues/new"
 
 /** Drift's source code. */
 internal const val SOURCE_URL = "https://github.com/hafacc/drift"
 
-/** Quiet "Privacy", "Feedback" and "Source code" buttons; Privacy opens [PrivacyDialog]. */
+/** Quiet "Privacy", "Support", "Feedback" and "Source code" buttons; Privacy opens [PrivacyDialog]. */
 @Composable
 internal fun FooterLinks(modifier: Modifier = Modifier) {
     var showing by rememberSaveable { mutableStateOf(false) }
     val uriHandler = LocalUriHandler.current
     val color = MaterialTheme.colorScheme.onSurfaceVariant
-    Row(modifier = modifier) {
+    FlowRow(modifier = modifier, horizontalArrangement = Arrangement.Center) {
         TextButton(onClick = { showing = true }) { Text("Privacy", color = color) }
+        TextButton(onClick = { uriHandler.openUri(SUPPORT_URL) }) { Text("Support", color = color) }
         TextButton(onClick = { uriHandler.openUri(FEEDBACK_URL) }) { Text("Feedback", color = color) }
         TextButton(onClick = { uriHandler.openUri(SOURCE_URL) }) { Text("Source code", color = color) }
     }
