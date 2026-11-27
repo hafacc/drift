@@ -4,13 +4,20 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    # a new version waits a week, so a bad release is usually pulled before it is offered
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: bun
     directory: /site
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: gradle
     directory: /android
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
