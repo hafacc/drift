@@ -30,7 +30,17 @@ jobs:
         id: checkout
         with:
           ref: ${{ inputs.ref }}
-      - run: brew install xcodegen
+      # pinned: each xcodegen release writes the project a little differently, so an unpinned
+      # one fails the check below whenever Homebrew moves on
+      - name: install xcodegen
+        env:
+          version: 2.46.0
+          sha256: 4d9e34b62172d645eed6457cac13fc222569974098ef4ee9c3368bedf0196806
+        run: |
+          curl -fsSL "https://github.com/yonaskolb/XcodeGen/releases/download/$version/xcodegen.zip" -o "$RUNNER_TEMP/xcodegen.zip"
+          echo "$sha256  $RUNNER_TEMP/xcodegen.zip" | shasum -a 256 -c -
+          unzip -q "$RUNNER_TEMP/xcodegen.zip" -d "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/xcodegen/bin" >> "$GITHUB_PATH"
       # Xcode Cloud builds the committed project, so it must be what project.yml generates
       - name: check the project matches project.yml
         run: |
