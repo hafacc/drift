@@ -1,1 +1,1 @@
-Local air conditioner control
+Works over Wi-Fi, no cloud
