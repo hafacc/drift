@@ -80,7 +80,7 @@ every `project.yml` change (`build.yml` fails when the two differ).
 
 `store/` holds the App Store Connect listing for the one universal app: `en-US/` the
 fields shared by iPhone and Mac (name, subtitle, URLs), `ios/` and `macos/` each
-platform's description, keywords and promotional text, `review_notes.txt` the App Review
+platform's description and keywords, `review_notes.txt` the App Review
 notes, and `screenshots/` the framed screenshots. Nothing uploads them; paste them in.
 
 Screenshots: a debug build launched with `-DriftScreenshot cool` (or heat, dry, fan, auto)
